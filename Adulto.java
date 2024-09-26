@@ -1,6 +1,6 @@
 public class Adulto extends Vampiro {
     
-    Adulto(String n,int f, int v, int h,String c,boolean a){
+    Adulto(String n,int f, int v, int h,String c,String a){
         super(n, f, v, h,c, a);
     }
     @Override

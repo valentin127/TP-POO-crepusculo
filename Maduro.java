@@ -1,6 +1,6 @@
 public class Maduro extends Vampiro {
     
-    Maduro(String n,int f, int v, int h,String c,boolean a){
+    Maduro(String n,int f, int v, int h,String c,String a){
         super(n, f, v, h,c, a);
     }
 

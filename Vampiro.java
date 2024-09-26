@@ -3,8 +3,8 @@ public abstract class Vampiro{
     int fuerza,velocidad;
     int hambre;
     String ColorOjos;
-    boolean alas;
-    Vampiro(String n,int f, int v, int h,String c,boolean a){
+    String alas;
+    Vampiro(String n,int f, int v, int h,String c,String a){
         this.nombre=n;
         this.fuerza=f;
         this.velocidad=v;

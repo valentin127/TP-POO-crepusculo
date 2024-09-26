@@ -1,7 +1,7 @@
 public class RecienConvertido extends Vampiro {
 
     // Constructor específico para RecienConvertido
-    public RecienConvertido(String n,int f, int v, int h,String c,boolean a){
+    public RecienConvertido(String n,int f, int v, int h,String c,String a){
         super(n, f, v, h, c, a);
         // Los recién convertidos podrían tener características específicas al ser creados.
         this.fuerza += 10; // Por ejemplo, un bono de fuerza inicial.
