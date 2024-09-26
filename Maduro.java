@@ -4,11 +4,11 @@ public class Maduro extends Vampiro {
         super(n, f, v, h,c, a);
     }
 
- @Override
+    @Override
     public void comer() {
         if (hambre > 0) {
             System.out.println(nombre + " está comiendo para saciar su hambre.");
-            hambre -= 20; // Reduce el hambre después de comer
+            hambre -= 15; // Reduce el hambre después de comer
             if (hambre < 0) {
                 hambre = 0;
             }
@@ -20,8 +20,8 @@ public class Maduro extends Vampiro {
     // Implementación del método abstracto habilidadEspecial
     @Override
     public void habilidadEspecial() {
-        System.out.println(nombre + " utiliza su habilidad de recién convertido: Velocidad Explosiva.");
-        velocidad += 50; // Aumenta temporalmente la velocidad
+        System.out.println(nombre + " utiliza su habilidad de vampiro maduro: Fuerza Extrema.");
+        fuerza += 50;
     }
 
     // Otros métodos específicos para RecienConvertido pueden ir aquí

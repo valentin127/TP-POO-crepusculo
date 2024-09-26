@@ -19,4 +19,10 @@ public abstract class Vampiro{
     public String getNombre() {
         return nombre;
     }
+    public String getColorOjos(){
+        return ColorOjos;
+    }
+    public String getAlas(){
+        return alas;
+    }
 }

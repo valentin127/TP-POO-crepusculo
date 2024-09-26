@@ -26,7 +26,7 @@ public class RecienConvertido extends Vampiro {
     @Override
     public void habilidadEspecial() {
         System.out.println(nombre + " utiliza su habilidad de recién convertido: Velocidad Explosiva.");
-        velocidad += 50; // Aumenta temporalmente la velocidad
+        velocidad += 50;
     }
 
     // Otros métodos específicos para RecienConvertido pueden ir aquí
