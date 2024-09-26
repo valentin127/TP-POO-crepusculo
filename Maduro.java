@@ -1,10 +1,10 @@
 public class Maduro extends Vampiro {
     
     public Maduro(String n,int f, int v, int h,String c,boolean a){
-        super(n, f, v, h,c, a);
+        super(n, f, v, h, c, a);
     }
 
- @Override
+    @Override
     public void comer() {
         if (hambre > 0) {
             System.out.println(nombre + " está comiendo para saciar su hambre.");
@@ -20,7 +20,7 @@ public class Maduro extends Vampiro {
     // Implementación del método abstracto habilidadEspecial
     @Override
     public void habilidadEspecial() {
-        System.out.println(nombre + " utiliza su habilidad de recién convertido: Fuerza Extrema.");
+        System.out.println(nombre + " utiliza su habilidad de vampiro maduro: Fuerza Extrema.");
         fuerza += 50;
     }
 

@@ -1,8 +1,9 @@
 public class Adulto extends Vampiro {
     
     public Adulto(String n,int f, int v, int h,String c,boolean a){
-        super(n, f, v, h,c, a);
+        super(n, f, v, h, c, a);
     }
+
     @Override
     public void comer() {
         if (hambre > 0) {
@@ -19,7 +20,7 @@ public class Adulto extends Vampiro {
     // Implementación del método abstracto habilidadEspecial
     @Override
     public void habilidadEspecial() {
-        System.out.println(nombre + " utiliza su habilidad de recién convertido: Potenciado.");
+        System.out.println(nombre + " utiliza su habilidad de vampiro adulto: Agilidad.");
         velocidad += 25;
         fuerza += 25;
     }
