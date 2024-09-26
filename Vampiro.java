@@ -12,8 +12,8 @@ public abstract class Vampiro{
         this.ColorOjos=c;
         this.alas=a;
     }
-    public abstract void admitirVampiro();
-    public abstract void expulsarVampiro();
-    public abstract void comerAnimal();
-    public abstract void chuparSangre();
+    public abstract void comer();
+    public abstract void habilidadEspecial();
+    //public abstract void comerAnimal();
+    //public abstract void chuparSangre();
 }
