@@ -8,7 +8,7 @@ public class Main {
         boolean ciclo = true;
 
         while (ciclo) {
-            System.out.println("1. Mostrar clanes\n2. Crear Vampiro\n3. Listar vampiros\n4. Admitir vampiro a clan\n5. Expulsar vampiro de clan\n6. Comer\n7. Obtener vampiro más alto\n8. Salir");
+            System.out.println("1. Mostrar clanes\n2. Crear Vampiro\n3. Listar vampiros de un clan\n4. Admitir vampiro a un clan\n5. Expulsar vampiro de un clan\n6. Comer\n7. Usar habilidad especial\n8. Obtener vampiro más apto\n9. Salir");
             int opcion = sc.nextInt();
             sc.nextLine();  // Consumir el salto de línea después del int
             switch (opcion) {
@@ -57,9 +57,13 @@ public class Main {
                     break;
                 case 7:
                     System.out.println("Opcion 7");
-                    // Código para obtener el vampiro más alto
+                    // Código para usar habilidad especial
                     break;
                 case 8:
+                    System.out.println("Opcion 8");
+                    // Código para obtener el vampiro más apto
+                    break;
+                case 9:
                     System.out.println("Saliendo del programa...");
                     sc.close();
                     ciclo = false;

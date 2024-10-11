@@ -1,5 +1,7 @@
 public class Adulto extends Vampiro {
     
+    private int sabiduria = 10;
+
     Adulto(String n,int f, int v, int h,String c,String a){
         super(n, f, v, h,c, a);
     }
@@ -8,7 +10,7 @@ public class Adulto extends Vampiro {
     public void comer() {
         if (hambre > 0) {
             System.out.println(nombre + " está comiendo para saciar su hambre.");
-            hambre -= 10; // Reduce el hambre después de comer
+            hambre -= 10;
             if (hambre < 0) {
                 hambre = 0;
             }
@@ -17,13 +19,24 @@ public class Adulto extends Vampiro {
         }
     }
 
-    // Implementación del método abstracto habilidadEspecial
     @Override
     public void habilidadEspecial() {
         System.out.println(nombre + " utiliza su habilidad de vampiro adulto: Agilidad.");
         velocidad += 25;
         fuerza += 25;
+        sabiduria += 5;
+        if (velocidad > 100) {
+            velocidad = 100;
+        }
+        if (fuerza > 100) {
+            fuerza = 100;
+        }
+        if (sabiduria > 100) {
+            sabiduria = 100;
+        }
     }
 
-    // Otros métodos específicos para RecienConvertido pueden ir aquí
+    public int getSabiduria() {
+        return sabiduria;
+    }
 }

@@ -1,4 +1,6 @@
 public class Maduro extends Vampiro {
+
+    private int autocontrol = 50;
     
     Maduro(String n,int f, int v, int h,String c,String a){
         super(n, f, v, h,c, a);
@@ -8,21 +10,34 @@ public class Maduro extends Vampiro {
     public void comer() {
         if (hambre > 0) {
             System.out.println(nombre + " está comiendo para saciar su hambre.");
-            hambre -= 15; // Reduce el hambre después de comer
+            autocontrol +=10;
+            hambre -= 15;
             if (hambre < 0) {
                 hambre = 0;
+            }
+            if (autocontrol > 100) {
+                autocontrol = 100;
             }
         } else {
             System.out.println(nombre + " no tiene hambre en este momento.");
         }
     }
 
-    // Implementación del método abstracto habilidadEspecial
     @Override
     public void habilidadEspecial() {
         System.out.println(nombre + " utiliza su habilidad de vampiro maduro: Fuerza Extrema.");
         fuerza += 50;
+        autocontrol -= 10;
+        if (fuerza > 100) {
+            fuerza = 100;
+        }
+        if (autocontrol < 0) {
+            autocontrol = 0;
+        }
     }
 
-    // Otros métodos específicos para RecienConvertido pueden ir aquí
+    public int getAutocontrol() {
+        return autocontrol;
+    }
+    
 }
