@@ -32,4 +32,11 @@ public abstract class Vampiro{
         return velocidad;
     }
 
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + ", Fuerza: " + fuerza + ", Velocidad: " + velocidad +
+               ", Hambre: " + hambre + ", Color de Ojos: " + ColorOjos + ", Clan: " + "Sin Clan"+
+               ", Alas: " + alas;
+    }
 }

@@ -10,23 +10,40 @@ public class Main {
     public static void main(String[] args) {
         String archivoCSV = "vampiros.csv"; // Ruta del archivo CSV
         Set<String> clanes = new HashSet<>(); // Utilizamos un Set para almacenar clanes únicos
+        ArrayList<Vampiro> vampiros = new ArrayList<>();  // Lista para almacenar vampiros
 
+        // Leer el archivo CSV
         try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
             String linea;
             boolean primeraLinea = true;
             while ((linea = br.readLine()) != null) {
                 if (primeraLinea) {
-                    primeraLinea = false;
+                    primeraLinea = false;  // Saltar la primera línea (cabeceras)
                     continue;
                 }
+                // Suponiendo que las columnas del CSV son: Nombre, Edad, Fuerza, Velocidad, Hambre, ColorOjos, Clan, TieneAlas
                 String[] datos = linea.split(",");
                 String nombre = datos[0];
-                String clan = datos[6];  // La columna 6 es donde está el clan
-                clanes.add(clan);  // Añadimos el clan al conjunto
+                int fuerza = Integer.parseInt(datos[2]);
+                int velocidad = Integer.parseInt(datos[3]);
+                int hambre = Integer.parseInt(datos[4]);
+                String colorOjos = datos[5];
+                String clan = datos[6];
+                String alas = datos[7].equalsIgnoreCase("si") ? "si" : "no";  // Convertir el texto a una respuesta booleana
+
+                // Crear vampiro con los datos leídos usando la clase Crear_vampiro
+                Crear_vampiro creador = new Crear_vampiro(nombre, fuerza, velocidad, hambre, clan, alas);
+
+                // Obtener el vampiro creado y añadirlo a la lista si no es null
+                Vampiro vampiro = creador.obtenerVampiroCreado();
+                if (vampiro != null) {
+                    vampiros.add(vampiro);  // Añadir vampiro a la lista
+                    clanes.add(clan);  // Añadir clan al conjunto de clanes
+                }
             }
 
+            // Menú interactivo
             Scanner sc = new Scanner(System.in);
-            ArrayList<Vampiro> vampiros = new ArrayList<>();  // Lista para almacenar vampiros
             boolean ciclo = true;
 
             while (ciclo) {
@@ -35,13 +52,14 @@ public class Main {
                 sc.nextLine();  // Consumir el salto de línea después del int
                 switch (opcion) {
                     case 1:
+                        // Mostrar clanes
                         System.out.println("Clanes:");
                         for (String clan : clanes) {
-                            System.out.println(clan);  // Listamos todos los clanes
+                            System.out.println(clan);
                         }
                         break;
                     case 2:
-                        // Recoger datos para crear el vampiro
+                        // Crear nuevo vampiro manualmente
                         System.out.println("Ingresa el nombre del vampiro:");
                         String nombre = sc.nextLine();
                         System.out.println("Ingresa la fuerza del vampiro (entre 1 y 100):");
@@ -51,20 +69,31 @@ public class Main {
                         System.out.println("Ingresa el hambre del vampiro:");
                         int hambre = sc.nextInt();
                         sc.nextLine();  // Consumir el salto de línea
+                        System.out.println("Ingresa el color de ojos del vampiro:");
+                        String colorOjos = sc.nextLine();
+
                         System.out.println("¿Tiene alas? (si/no):");
                         String alas = sc.nextLine();
+                        String clan = "Sin clan";
 
                         // Crear vampiro usando la clase Crear_vampiro
-                        new Crear_vampiro(nombre, fuerza, velocidad, hambre,"", alas);
+                        Crear_vampiro creador = new Crear_vampiro(nombre, fuerza, velocidad, hambre,colorOjos, alas);
 
-                        // vampiros.add(nuevoVampiro);
-                        // System.out.println("Vampiro creado: " + nuevoVampiro);
+                        // Obtener el vampiro creado y añadirlo a la lista si no es null
+                        Vampiro nuevoVampiro = creador.obtenerVampiroCreado();
+                        if (nuevoVampiro != null) {
+                            vampiros.add(nuevoVampiro);
+                            clanes.add(clan);  // Si el clan no existe, lo añadimos
+                            System.out.println("Vampiro creado y añadido a la lista.");
+                        } else {
+                            System.out.println("Error al crear el vampiro. Verifica los valores ingresados.");
+                        }
                         break;
                     case 3:
                         // Listar vampiros
                         System.out.println("Vampiros:");
                         for (Vampiro vamp : vampiros) {
-                            System.out.println(vamp);
+                            System.out.println(vamp);  // Llamada al método toString() de Vampiro
                         }
                         break;
                     case 4:
