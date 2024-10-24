@@ -38,7 +38,15 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
 
     @Override
     public void ComerAnimal(){
-        System.out.println(nombre + "ok");
+        if (hambre > 0) {
+            System.out.println(nombre + " está comiendo un animal para saciar su hambre.");
+            hambre -= 15;
+            if (hambre < 0) {
+                hambre = 0;
+            }
+        } else {
+            System.out.println(nombre + " no tiene hambre en este momento.");
+        }
     }
 
     public int getSabiduria() {
