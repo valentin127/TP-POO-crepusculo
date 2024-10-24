@@ -1,4 +1,4 @@
-public class RecienConvertido extends Vampiro {
+public class RecienConvertido extends Vampiro{
 
     private int inestabilidad = 50;
 

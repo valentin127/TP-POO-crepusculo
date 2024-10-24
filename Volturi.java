@@ -18,7 +18,17 @@ public class Volturi extends Clan{
         }
     }
 
-    // Nuevo método exclusivo de Volturi
+    @Override
+    public void admitirVampiro(Vampiro vampiro) {
+        if(vampiro.getFuerza()>30 && vampiro.getVelocidad()>30){
+            vampiros.add(vampiro);
+            System.out.println(vampiro.getNombre() + " ha sido admitido en el clan " + nombreClan + ".");
+        } else {
+            System.out.println("Para ser admitido a los Volturi, " + vampiro.getNombre() + " debería tener al menos 30 de fuerza y 30 de velocidad");
+        }
+    }
+
+    // Nuevo método único de Volturi
     public void mostrarInfluenciaPolitica() {
         System.out.println("Influencia política de los Volturi: " + influenciaPolitica);
     }

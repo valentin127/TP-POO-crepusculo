@@ -25,4 +25,11 @@ public abstract class Vampiro{
     public String getAlas(){
         return alas;
     }
+    public int getFuerza(){
+        return fuerza;
+    }
+    public int getVelocidad(){
+        return velocidad;
+    }
+
 }

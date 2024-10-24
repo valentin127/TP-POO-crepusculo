@@ -1,4 +1,4 @@
-public class Maduro extends Vampiro {
+public class Maduro extends Vampiro implements ComedorDeAnimales {
 
     private int autocontrol = 50;
     
@@ -33,6 +33,23 @@ public class Maduro extends Vampiro {
         }
         if (autocontrol < 0) {
             autocontrol = 0;
+        }
+    }
+
+    @Override
+    public void ComerAnimal(){
+        if (hambre > 0) {
+            System.out.println(nombre + " está comiendo un animal para saciar su hambre.");
+            autocontrol +=15;
+            hambre -= 20;
+            if (hambre < 0) {
+                hambre = 0;
+            }
+            if (autocontrol > 100) {
+                autocontrol = 100;
+            }
+        } else {
+            System.out.println(nombre + " no tiene hambre en este momento.");
         }
     }
 

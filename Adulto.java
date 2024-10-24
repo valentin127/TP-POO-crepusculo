@@ -1,4 +1,4 @@
-public class Adulto extends Vampiro {
+public class Adulto extends Vampiro implements ComedorDeAnimales {
     
     private int sabiduria = 10;
 
@@ -34,6 +34,11 @@ public class Adulto extends Vampiro {
         if (sabiduria > 100) {
             sabiduria = 100;
         }
+    }
+
+    @Override
+    public void ComerAnimal(){
+        System.out.println(nombre + "ok");
     }
 
     public int getSabiduria() {
