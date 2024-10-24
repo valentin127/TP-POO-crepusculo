@@ -1,15 +1,18 @@
 public class Crear_vampiro {
     
+    // Este será el vampiro creado
+    private Vampiro vampiroCreado;
+
     // Constructor para la clase Crear_vampiro
-    Crear_vampiro(String n, int f, int v, int h, String c, String a) {
-        Vampiro nuevoVampiro = crearVampiro(n, f, v, h, c, a);
-        if (nuevoVampiro != null) {
-            System.out.println("Se ha creado un vampiro de tipo: " + nuevoVampiro.getClass().getSimpleName());
+    public Crear_vampiro(String n, int f, int v, int h, String c, String a) {
+        vampiroCreado = crearVampiro(n, f, v, h, c, a);
+        if (vampiroCreado != null) {
+            System.out.println("Se ha creado un vampiro de tipo: " + vampiroCreado.getClass().getSimpleName());
         } else {
             System.out.println("No se pudo crear el vampiro. La fuerza está fuera del rango permitido.");
         }
     }
-    
+
     // Función para determinar qué tipo de vampiro crear
     public Vampiro crearVampiro(String nombre, int fuerza, int velocidad, int hambre, String colorOjos, String alas) {
         if (fuerza < 1 || fuerza > 100) {
@@ -26,5 +29,10 @@ public class Crear_vampiro {
         }
 
         return null;
+    }
+
+    // Método para obtener el vampiro creado
+    public Vampiro obtenerVampiroCreado() {
+        return vampiroCreado;
     }
 }
