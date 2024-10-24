@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Clan {
-    private String nombreClan;
-    private List<Vampiro> vampiros;
+    protected  String nombreClan;
+    protected List<Vampiro> vampiros;
 
     public Clan(String nombreClan) {
         this.nombreClan = nombreClan;
