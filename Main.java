@@ -29,6 +29,7 @@ public class Main {
                 int fuerza = Integer.parseInt(datos[1]);
                 int velocidad = Integer.parseInt(datos[2]);
                 int hambre = Integer.parseInt(datos[3]);
+                String ColorOjos = datos[4];
                 String clan = datos[5];
                 String alas = datos[6].equalsIgnoreCase("si") ? "si" : "no";  // Convertir el texto a una respuesta booleana
 
@@ -98,11 +99,39 @@ public class Main {
                     case 4:
                         System.out.println("Opcion 4");
                         // Código para admitir vampiro a clan
+                        boolean creado = true;
+                        System.out.println("¿El clan esta en lista o se creara uno nuevo? Ingrese SI para crear uno nuevo de lo contrario ingrese otra cosa: \n");
+                        String pal = sc.nextLine();
+                        if(pal.equals("SI")){
+                            creado = false;
+                        }
+                        if (!creado) {
+                            System.out.println("Ingresa el nombre del vampiro:");
+                            String nombreClan = sc.nextLine();
+                            //Aca ya deje la estructura para armar nuevos clanes, debemos hablar que hacemos
+                        }
+
                         break;
-                    case 5:
-                        System.out.println("Opcion 5");
-                        // Código para expulsar vampiro de clan
+                        case 5:
+                        System.out.println("Opción 5 - Expulsar vampiro de su clan\n");
+                        
+                        int i = 0;
+                        for (Vampiro vamp : vampiros) {
+                            i++;
+                            System.out.println(i + " - " + vamp);  // Llamada al método toString() de Vampiro
+                        }
+                        
+                        System.out.println("Seleccione un vampiro a expulsar de su clan (1 - " + vampiros.size() + "):");
+                        int seleccion = sc.nextInt() - 1; 
+                        
+                        if ((seleccion >= 0) && (seleccion < vampiros.size()) && (!(vampiros.get(seleccion).Clan.equals("Sin clan")))) {
+                            vampiros.get(seleccion).Clan = "Sin clan";  // Cambiar el clan del vampiro seleccionado
+                            System.out.println("El vampiro " + vampiros.get(seleccion).nombre + " ha sido expulsado de su clan.");
+                        } else {
+                            System.out.println("Selección inválida o el vampiro no tiene clan.");
+                        }
                         break;
+                    
                     case 6:
                         System.out.println("Opcion 6");
                         // Código para comer
@@ -113,7 +142,7 @@ public class Main {
                         break;
                     case 8:
                     System.out.println("Guardando los vampiros y saliendo del programa...");
-                /* 
+                
                     // Guardar los cambios en el archivo CSV
                     try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV))) {
                         // Escribir la cabecera
@@ -126,14 +155,14 @@ public class Main {
                                     + vamp.fuerza + "," 
                                     + vamp.velocidad + "," 
                                     + vamp.hambre + "," 
-                                    + vamp.colorOjos + "," 
-                                    + vamp.clan + "," 
+                                    + vamp.ColorOjos + "," 
+                                    + vamp.Clan + "," 
                                     + (vamp.alas.equalsIgnoreCase("si") ? "si" : "no") + "\n");
                         }
                     } catch (IOException e) {
                         System.out.println("Error al guardar los vampiros en el archivo CSV: " + e.getMessage());
                     }
-                */
+                
                     sc.close();
                     ciclo = false;
                     break;
