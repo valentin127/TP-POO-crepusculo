@@ -1,5 +1,5 @@
-Nombre,Edad,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas
-Edward,100,80,60,20,Rojo,Cullen,si
-Bella,25,60,70,50,Verde,Cullen,si
-Aro,350,90,80,30,Negro,Volturi,no
-Jane,120,50,100,40,Rojo,Volturi,no
+Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas
+Edward,80,60,20,Rojo,Cullen,si
+Bella,60,70,50,Verde,Cullen,si
+Aro,40,80,30,Negro,Volturi,no
+Jane,50,100,40,Rojo,Volturi,no

@@ -2,8 +2,8 @@ public class Maduro extends Vampiro implements ComedorDeAnimales {
 
     private int autocontrol = 50;
     
-    Maduro(String n,int f, int v, int h,String c,String a){
-        super(n, f, v, h,c, a);
+    Maduro(String n,int f, int v, int h,String c,String clan, String a){
+        super(n, f, v, h,c,clan, a);
     }
 
     @Override

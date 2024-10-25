@@ -2,8 +2,8 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
     
     private int sabiduria = 10;
 
-    Adulto(String n,int f, int v, int h,String c,String a){
-        super(n, f, v, h,c, a);
+    Adulto(String n,int f, int v, int h,String c,String clan, String a){
+        super(n, f, v, h,c,clan, a);
     }
 
     @Override

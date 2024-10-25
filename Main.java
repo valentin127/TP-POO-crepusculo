@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -24,12 +26,11 @@ public class Main {
                 // Suponiendo que las columnas del CSV son: Nombre, Edad, Fuerza, Velocidad, Hambre, ColorOjos, Clan, TieneAlas
                 String[] datos = linea.split(",");
                 String nombre = datos[0];
-                int fuerza = Integer.parseInt(datos[2]);
-                int velocidad = Integer.parseInt(datos[3]);
-                int hambre = Integer.parseInt(datos[4]);
-                String colorOjos = datos[5];
-                String clan = datos[6];
-                String alas = datos[7].equalsIgnoreCase("si") ? "si" : "no";  // Convertir el texto a una respuesta booleana
+                int fuerza = Integer.parseInt(datos[1]);
+                int velocidad = Integer.parseInt(datos[2]);
+                int hambre = Integer.parseInt(datos[3]);
+                String clan = datos[5];
+                String alas = datos[6].equalsIgnoreCase("si") ? "si" : "no";  // Convertir el texto a una respuesta booleana
 
                 // Crear vampiro con los datos leídos usando la clase Crear_vampiro
                 Crear_vampiro creador = new Crear_vampiro(nombre, fuerza, velocidad, hambre, clan, alas);
@@ -69,15 +70,13 @@ public class Main {
                         System.out.println("Ingresa el hambre del vampiro:");
                         int hambre = sc.nextInt();
                         sc.nextLine();  // Consumir el salto de línea
-                        System.out.println("Ingresa el color de ojos del vampiro:");
-                        String colorOjos = sc.nextLine();
 
                         System.out.println("¿Tiene alas? (si/no):");
                         String alas = sc.nextLine();
                         String clan = "Sin clan";
 
                         // Crear vampiro usando la clase Crear_vampiro
-                        Crear_vampiro creador = new Crear_vampiro(nombre, fuerza, velocidad, hambre,colorOjos, alas);
+                        Crear_vampiro creador = new Crear_vampiro(nombre, fuerza, velocidad, hambre, alas);
 
                         // Obtener el vampiro creado y añadirlo a la lista si no es null
                         Vampiro nuevoVampiro = creador.obtenerVampiroCreado();
@@ -113,10 +112,32 @@ public class Main {
                         // Código para obtener el vampiro más apto
                         break;
                     case 8:
-                        System.out.println("Saliendo del programa...");
-                        sc.close();
-                        ciclo = false;
-                        break;
+                    System.out.println("Guardando los vampiros y saliendo del programa...");
+                /* 
+                    // Guardar los cambios en el archivo CSV
+                    try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV))) {
+                        // Escribir la cabecera
+                        bw.write("Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas\n");
+                
+                        // Escribir cada vampiro en el archivo CSV
+                        for (Vampiro vamp : vampiros) {
+                            // Acceder directamente a los atributos del vampiro y escribirlos en el archivo
+                            bw.write(vamp.nombre + "," 
+                                    + vamp.fuerza + "," 
+                                    + vamp.velocidad + "," 
+                                    + vamp.hambre + "," 
+                                    + vamp.colorOjos + "," 
+                                    + vamp.clan + "," 
+                                    + (vamp.alas.equalsIgnoreCase("si") ? "si" : "no") + "\n");
+                        }
+                    } catch (IOException e) {
+                        System.out.println("Error al guardar los vampiros en el archivo CSV: " + e.getMessage());
+                    }
+                */
+                    sc.close();
+                    ciclo = false;
+                    break;
+                
                     default:
                         System.out.println("Opción no válida");
                 }

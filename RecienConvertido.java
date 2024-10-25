@@ -2,11 +2,9 @@ public class RecienConvertido extends Vampiro{
 
     private int inestabilidad = 50;
 
-    public RecienConvertido(String n,int f, int v, int h,String c,String a){
-        super(n, f, v, h, c, a);
+    RecienConvertido(String n,int f, int v, int h,String c,String clan, String a){
+        super(n, f, v, h,c,clan, a);
         // Los recién convertidos podrían tener características específicas al ser creados.
-        this.fuerza += 10; // Por ejemplo, un bono de fuerza inicial.
-        this.hambre = 100; // Al estar recién convertidos, podrían tener mucha hambre.
     }
 
     @Override

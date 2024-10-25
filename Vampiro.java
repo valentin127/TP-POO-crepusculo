@@ -1,15 +1,17 @@
 public abstract class Vampiro{
-    String nombre;
-    int fuerza,velocidad;
-    int hambre;
-    String ColorOjos;
-    String alas;
-    Vampiro(String n,int f, int v, int h,String c,String a){
+    protected String nombre;
+    protected int fuerza,velocidad;
+    protected int hambre;
+    protected String ColorOjos;
+    protected String Clan;
+    protected String alas;
+    Vampiro(String n,int f, int v, int h,String c,String clan,String a){
         this.nombre=n;
         this.fuerza=f;
         this.velocidad=v;
         this.hambre=h;
         this.ColorOjos=c;
+        this.Clan=clan;
         this.alas=a;
     }
     public abstract void comer();
@@ -36,7 +38,7 @@ public abstract class Vampiro{
     @Override
     public String toString() {
         return "Nombre: " + nombre + ", Fuerza: " + fuerza + ", Velocidad: " + velocidad +
-               ", Hambre: " + hambre + ", Color de Ojos: " + ColorOjos + ", Clan: " + "Sin Clan"+
+               ", Hambre: " + hambre + ", Color de Ojos: " + ColorOjos + ", Clan: " + Clan+
                ", Alas: " + alas;
     }
 }
