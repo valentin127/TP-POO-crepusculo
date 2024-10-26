@@ -1,17 +1,15 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         String archivoCSV = "vampiros.csv"; // Ruta del archivo CSV
-        Set<String> clanes = new HashSet<>(); // Utilizamos un Set para almacenar clanes únicos
+        ArrayList<Clan> clanes = new ArrayList<>(); // Utilizamos un Set para almacenar clanes únicos
         ArrayList<Vampiro> vampiros = new ArrayList<>();  // Lista para almacenar vampiros
 
         // Leer el archivo CSV
@@ -32,15 +30,17 @@ public class Main {
                 String ColorOjos = datos[4];
                 String clan = datos[5];
                 String alas = datos[6].equalsIgnoreCase("si") ? "si" : "no";  // Convertir el texto a una respuesta booleana
+                int años = Integer.parseInt(datos[7]);
 
                 // Crear vampiro con los datos leídos usando la clase Crear_vampiro
                 Crear_vampiro creador = new Crear_vampiro(nombre, fuerza, velocidad, hambre, clan, alas);
+                ClanComun cl = new ClanComun(clan, años);
 
                 // Obtener el vampiro creado y añadirlo a la lista si no es null
                 Vampiro vampiro = creador.obtenerVampiroCreado();
                 if (vampiro != null) {
                     vampiros.add(vampiro);  // Añadir vampiro a la lista
-                    clanes.add(clan);  // Añadir clan al conjunto de clanes
+                    clanes.add(cl);  // Añadir clan al conjunto de clanes
                 }
             }
 
@@ -56,7 +56,7 @@ public class Main {
                     case 1:
                         // Mostrar clanes
                         System.out.println("Clanes:");
-                        for (String clan : clanes) {
+                        for (Clan clan : clanes) {
                             System.out.println(clan);
                         }
                         break;
@@ -74,7 +74,6 @@ public class Main {
 
                         System.out.println("¿Tiene alas? (si/no):");
                         String alas = sc.nextLine();
-                        String clan = "Sin clan";
 
                         // Crear vampiro usando la clase Crear_vampiro
                         Crear_vampiro creador = new Crear_vampiro(nombre, fuerza, velocidad, hambre, alas);
@@ -83,7 +82,6 @@ public class Main {
                         Vampiro nuevoVampiro = creador.obtenerVampiroCreado();
                         if (nuevoVampiro != null) {
                             vampiros.add(nuevoVampiro);
-                            clanes.add(clan);  // Si el clan no existe, lo añadimos
                             System.out.println("Vampiro creado y añadido a la lista.");
                         } else {
                             System.out.println("Error al crear el vampiro. Verifica los valores ingresados.");
@@ -92,8 +90,9 @@ public class Main {
                     case 3:
                         // Listar vampiros
                         System.out.println("Vampiros:");
-                        for (Vampiro vamp : vampiros) {
-                            System.out.println(vamp);  // Llamada al método toString() de Vampiro
+                        for(Clan clan:clanes){
+                            System.out.println("Vampiros del clan "+clan+":");
+                            clan.listarVampiros();
                         }
                         break;
                     case 4:

@@ -30,4 +30,9 @@ public abstract class Clan {
         System.out.println("- " + vampiro.getNombre());
         }
     }
+
+    @Override
+    public String toString(){
+        return nombreClan;
+    }
 }
