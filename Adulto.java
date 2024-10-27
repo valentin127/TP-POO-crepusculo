@@ -28,9 +28,18 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
     @Override
     public void habilidadEspecial() {
         if(condicion>70){
-            System.out.println(nombre + " utiliza su habilidad de vampiro adulto: Agilidad.");
+            System.out.println(nombre + " utiliza su habilidad de vampiro adulto: Agilidad (su fuerza y su velocidad aumentan 25 puntos temporalmente).");
+            System.out.println("Su velocidad antes de es: "+ velocidad);
+            System.out.println("Su fuerza antes de es: "+ fuerza);
             velocidad += 25;
             fuerza += 25;
+            System.out.println("Su velocidad despues de es: "+ velocidad);
+            System.out.println("Su fuerza despues de es: "+ fuerza);
+            hambre = 100;
+            fuerza = fuerza - 25;
+            velocidad = velocidad - 25;
+            
+
             
         }
         else{

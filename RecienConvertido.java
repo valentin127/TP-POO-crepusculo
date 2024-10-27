@@ -29,8 +29,12 @@ public class RecienConvertido extends Vampiro {
     @Override
     public void habilidadEspecial() {
         if (inestabilidad<20){
-            System.out.println(nombre + " utiliza su habilidad de recién convertido: Velocidad Explosiva (50 puntos de velocidad).");
+            System.out.println(nombre + " utiliza su habilidad de recién convertido: Velocidad Explosiva (50 puntos de velocidad temporales).");
+            System.out.println("Su velocidad antes de es: "+ velocidad);
             velocidad += 50;
+            System.out.println("Su velocidad despues de es: "+ velocidad);
+            hambre = 100;
+            velocidad = velocidad - 50;
         }
         else{
             System.out.println(nombre + " no puede utilizar su habilidad especial ya que su atributo unico (inestabilidad) es de:"+inestabilidad+". \nDebe ser menor a 20 puntos, para que el vampiro pueda usarlo, comiendo baja su inestabilidad");

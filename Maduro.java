@@ -30,8 +30,12 @@ public class Maduro extends Vampiro implements ComedorDeAnimales {
     @Override
     public void habilidadEspecial() {
         if (autocontrol>50){
-            System.out.println(nombre + " utiliza su habilidad de vampiro maduro: Fuerza Extrema. (Su fuerza aumenta en 50 puntos)");
+            System.out.println(nombre + " utiliza su habilidad de vampiro maduro: Fuerza Extrema. (Su fuerza aumenta en 50 puntos temporales)");
+            System.out.println("Su fuerza antes de es: "+ fuerza);
             fuerza += 50;
+            System.out.println("Su fuerza despues de es: "+ fuerza);
+            hambre = 100;
+            fuerza = fuerza - 50;
         }
         else{
             System.out.println(nombre + " no puede utilizar su habilidad especial ya que su atributo unico (autocontrol) es de:"+autocontrol+". \nDebe ser mayor a 50 puntos, para que el vampiro pueda usarlo, comiendo sube su autocontrol");
