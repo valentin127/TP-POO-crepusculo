@@ -455,16 +455,40 @@ public class Main {
                                     break;
                                 }
                             }
+                            
                             // Si el clan ya existe, no se puede crear
                             if (existeClan) {
                                 System.out.println("Ya existe un clan con ese nombre");
                                 break;
                             }
-                            System.out.println("Ingresa los años de antiguedad de ese clan:");
-                            int años = sc.nextInt();
-                            // Si el clan no existe, añade un nuevo clan
+                            
+                            // Ingreso de años de antigüedad con validación y opción de reintento
+                            int años = -1;
+                            while (true) {
+                                System.out.println("Ingresa los años de antiguedad de ese clan:");
+                                String input = sc.nextLine();
+                            
+                                if (input.equalsIgnoreCase("cancelar")) {
+                                    System.out.println("Operación cancelada.");
+                                    break;
+                                }
+                            
+                                try {
+                                    años = Integer.parseInt(input);
+                                    if (años >= 0) {
+                                        break; // Si la entrada es válida, sale del ciclo
+                                    } else {
+                                        System.out.println("Los años de antiguedad no pueden ser negativos.");
+                                    }
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Entrada inválida. Debe ser un número entero positivo.");
+                                }
+                            }
+                            
+                            // Si el clan no existe y la antigüedad es válida, añade un nuevo clan
                             ClanComun nuevoClan = new ClanComun(nombreClanNuevo, años);
                             clanes.add(nuevoClan);
+                            System.out.println("Clan " + nombreClanNuevo + " creado exitosamente.");
                             break;
                         
                         case 10:
