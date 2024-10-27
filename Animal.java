@@ -1,11 +1,17 @@
+import java.util.Random;
+
 public class Animal {
-    private String tipoDeAnimal;
-    private int edad;
-    private int tamaño;
-    public Animal(String tipoDeAnimal, int edad, int tamaño){
-        this.tipoDeAnimal=tipoDeAnimal;
-        this.edad=edad;
-        this.tamaño=tamaño;
+    private int hambre; 
+    public Animal() {
+        this.hambre = generarHambreAleatorio(); 
     }
-    // Clase inutil. La podemos usar mas adelante pero en principio no
+    public int getHambre() {
+        return hambre;
+    }
+    private int generarHambreAleatorio() {
+        Random random = new Random();
+        return random.nextInt(99) + 1; 
+    }
+
+
 }
