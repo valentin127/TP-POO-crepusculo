@@ -98,37 +98,76 @@ public class Main {
                     case 4:
                         System.out.println("Opcion 4");
                         // Código para admitir vampiro a clan
-                        boolean creado = true;
-                        System.out.println("¿El clan esta en lista o se creara uno nuevo? Ingrese SI para crear uno nuevo de lo contrario ingrese otra cosa: \n");
-                        String pal = sc.nextLine();
-                        if(pal.equals("SI")){
-                            creado = false;
+
+                        System.out.println("Ingrese el nombre del clan: ");
+                        String nombreClan = sc.nextLine();
+
+                        Clan clanExistente = null;
+                        for (Clan c : clanes) {
+                            if (c.getNombreClan().equals(nombreClan)) {
+                                clanExistente = c;
+                                break;
+                            }
                         }
-                        if (!creado) {
-                            System.out.println("Ingresa el nombre del vampiro:");
-                            String nombreClan = sc.nextLine();
-                            //Aca ya deje la estructura para armar nuevos clanes, debemos hablar que hacemos
+                        if (clanExistente == null) {
+                            System.out.println("El clan indicado no existe");
+                            break;
                         }
 
+                        System.out.println("Ingrese el nombre del vampiro: ");
+                        String nombreVampiro = sc.nextLine();
+
+                        Vampiro vampiroExistente = null;
+                        for (Vampiro v : vampiros) {
+                            if (v.getNombre().equals(nombreVampiro)) {
+                                vampiroExistente = v;
+                                break;
+                            }
+                        }
+                        if (vampiroExistente == null) {
+                            System.out.println("El vampiro indicado no existe");
+                            break;
+                        }
+
+                        clanExistente.admitirVampiro(vampiroExistente);
                         break;
-                        case 5:
+
+                    case 5:
                         System.out.println("Opción 5 - Expulsar vampiro de su clan\n");
+                        // Código para expulsar vampiro de su clan
+                        // Usamos un 2 en las variables porque java da un error raro con la variable definida en otro case
                         
-                        int i = 0;
-                        for (Vampiro vamp : vampiros) {
-                            i++;
-                            System.out.println(i + " - " + vamp);  // Llamada al método toString() de Vampiro
+                        System.out.println("Ingrese el nombre del clan: ");
+                        String nombreClan2 = sc.nextLine();
+
+                        Clan clanExistente2 = null;
+                        for (Clan c : clanes) {
+                            if (c.getNombreClan().equals(nombreClan2)) {
+                                clanExistente2 = c;
+                                break;
+                            }
+                        }
+                        if (clanExistente2 == null) {
+                            System.out.println("El clan indicado no existe");
+                            break;
                         }
                         
-                        System.out.println("Seleccione un vampiro a expulsar de su clan (1 - " + vampiros.size() + "):");
-                        int seleccion = sc.nextInt() - 1; 
                         
-                        if ((seleccion >= 0) && (seleccion < vampiros.size()) && (!(vampiros.get(seleccion).Clan.equals("Sin clan")))) {
-                            vampiros.get(seleccion).Clan = "Sin clan";  // Cambiar el clan del vampiro seleccionado
-                            System.out.println("El vampiro " + vampiros.get(seleccion).nombre + " ha sido expulsado de su clan.");
-                        } else {
-                            System.out.println("Selección inválida o el vampiro no tiene clan.");
+                        System.out.println("Ingrese el nombre del vampiro: ");
+                        String nombreVampiro2 = sc.nextLine();
+
+                        Vampiro vampiroExistente2 = null;
+                        for (Vampiro v : vampiros) {
+                            if (v.getNombre().equals(nombreVampiro2)) {
+                                vampiroExistente2 = v;
+                                break;
+                            }
                         }
+                        if (vampiroExistente2 == null) {
+                            System.out.println("El vampiro indicado no existe");
+                            break;
+                        }
+                        clanExistente2.expulsarVampiro(vampiroExistente2);
                         break;
                     
                     case 6:

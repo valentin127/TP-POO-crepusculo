@@ -31,6 +31,10 @@ public abstract class Clan {
         }
     }
 
+    public String getNombreClan(){
+        return nombreClan;
+    }
+
     @Override
     public String toString(){
         return nombreClan;
