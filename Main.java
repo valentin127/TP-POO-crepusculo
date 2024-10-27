@@ -316,60 +316,80 @@ public class Main {
 
                         case 6:
                             System.out.println("Opción 6 - Comer");
-                            for (int i = 0; i < vampiros.size(); i++) {
-                                Vampiro vamp = vampiros.get(i);
-                                System.out.println((i + 1) + ". Vampiro: " + vamp.getNombre() + " (Hambre actual: " + vamp.getHambre() + ")");
+                            boolean continuarComer = true;
+                            
+                            int vampiroSeleccionado = -1;
+                            while (true) {
+                                // Mostrar la lista de vampiros
+                                for (int i = 0; i < vampiros.size(); i++) {
+                                    Vampiro vamp = vampiros.get(i);
+                                    System.out.println((i + 1) + ". Vampiro: " + vamp.getNombre() + " (Hambre actual: " + vamp.getHambre() + ")");
+                                }
+                                System.out.println("Seleccione el número del vampiro que va a comer (o escribe 'cancelar' para cancelar):");
+                                String input = sc.nextLine();
+                            
+                                if (input.equalsIgnoreCase("cancelar")) {
+                                    System.out.println("Operación cancelada.");
+                                    continuarComer = false;
+                                    break;
+                                }
+                            
+                                try {
+                                    vampiroSeleccionado = Integer.parseInt(input) - 1;
+                            
+                                    if (vampiroSeleccionado >= 0 && vampiroSeleccionado < vampiros.size()) {
+                                        break; // Salir del ciclo si la selección es válida
+                                    } else {
+                                        System.out.println("Selección inválida. Por favor, elija un número de la lista.");
+                                    }
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Entrada inválida. Debe ser un número entero.");
+                                }
                             }
-                            System.out.println("Seleccione el número del vampiro que va a comer:");
-                            int vampiroSeleccionado = sc.nextInt() - 1;
-                            sc.nextLine();
 
-                            if (vampiroSeleccionado >= 0 && vampiroSeleccionado < vampiros.size()) {
-                                Vampiro vampiroQueCome = vampiros.get(vampiroSeleccionado);
-                                if (vampiroQueCome instanceof RecienConvertido) {
-                                    System.out.println(vampiroQueCome.getNombre() + " es un vampiro tipo RecienConvertido y solo puede comer personas.");
-                                    vampiroQueCome.comer(); 
-                                } 
-                                else if (vampiroQueCome instanceof Maduro) {
-                                    System.out.println(vampiroQueCome.getNombre() + " es un vampiro tipo  Maduro, puede comer tanto animales como personas.");
-
-                                    // Verificar si puede comer animales usando la interfaz
-                                    if (vampiroQueCome instanceof ComedorDeAnimales) {
-                                        ComedorDeAnimales vampiroMaduro = (ComedorDeAnimales) vampiroQueCome;  // Hacemos el casting
-                                        System.out.println("¿El vampiro desea comer un animal? (si/no):");
-                                        String respuesta = sc.nextLine();
-                                        if (respuesta.equalsIgnoreCase("si")) {
-                                            vampiroMaduro.comerAnimal();  // Llamamos al método de la interfaz
-                                        } 
-                                        else {
-                                            vampiroQueCome.comer();  // Método general para comer personas
-                                        }
-                                    }
-                                } 
-                                else if (vampiroQueCome instanceof Adulto) {
-                                    System.out.println(vampiroQueCome.getNombre() + " es un vampiro tipo Adulto, puede comer lo que desee.");
-
-                                    // Verificar si puede comer animales usando la interfaz
-                                    if (vampiroQueCome instanceof ComedorDeAnimales) {
-                                        ComedorDeAnimales vampiroAdulto = (ComedorDeAnimales) vampiroQueCome;  //  casting de clases para el correcto funcinar del metodo
-                                        System.out.println("¿El vampiro desea comer un animal? (si/no):");
-                                        String eleccion = sc.nextLine();
-                                        if (eleccion.equalsIgnoreCase("si")) {
-                                            vampiroAdulto.comerAnimal();  
-                                        } 
-                                        else {
-                                            vampiroQueCome.comer();  
-                                        }
-                                    }
-                                }
-
-                                if (vampiroQueCome.hambre > 1) {
-                                    System.out.println("Hambre de " + vampiroQueCome.getNombre() + " después de comer: " + vampiroQueCome.getHambre());
-                                }
-                                
+                            if(continuarComer == false) break;
+                            
+                            // Proceso después de seleccionar un vampiro
+                            Vampiro vampiroQueCome = vampiros.get(vampiroSeleccionado);
+                            if (vampiroQueCome instanceof RecienConvertido) {
+                                System.out.println(vampiroQueCome.getNombre() + " es un vampiro tipo RecienConvertido y solo puede comer personas.");
+                                vampiroQueCome.comer(); 
                             } 
-                            else {
-                                System.out.println("Selección inválida.");
+                            else if (vampiroQueCome instanceof Maduro) {
+                                System.out.println(vampiroQueCome.getNombre() + " es un vampiro tipo Maduro, puede comer tanto animales como personas.");
+                            
+                                // Verificar si puede comer animales usando la interfaz
+                                if (vampiroQueCome instanceof ComedorDeAnimales) {
+                                    ComedorDeAnimales vampiroMaduro = (ComedorDeAnimales) vampiroQueCome;
+                                    System.out.println("¿El vampiro desea comer un animal? (si/no):");
+                                    String respuesta = sc.nextLine();
+                                    if (respuesta.equalsIgnoreCase("si")) {
+                                        vampiroMaduro.comerAnimal();
+                                    } 
+                                    else {
+                                        vampiroQueCome.comer();
+                                    }
+                                }
+                            } 
+                            else if (vampiroQueCome instanceof Adulto) {
+                                System.out.println(vampiroQueCome.getNombre() + " es un vampiro tipo Adulto, puede comer lo que desee.");
+                            
+                                // Verificar si puede comer animales usando la interfaz
+                                if (vampiroQueCome instanceof ComedorDeAnimales) {
+                                    ComedorDeAnimales vampiroAdulto = (ComedorDeAnimales) vampiroQueCome;
+                                    System.out.println("¿El vampiro desea comer un animal? (si/no):");
+                                    String eleccion = sc.nextLine();
+                                    if (eleccion.equalsIgnoreCase("si")) {
+                                        vampiroAdulto.comerAnimal();  
+                                    } 
+                                    else {
+                                        vampiroQueCome.comer();  
+                                    }
+                                }
+                            }
+                            
+                            if (vampiroQueCome.getHambre() > 1) {
+                                System.out.println("Hambre de " + vampiroQueCome.getNombre() + " después de comer: " + vampiroQueCome.getHambre());
                             }
                             break;
                     
