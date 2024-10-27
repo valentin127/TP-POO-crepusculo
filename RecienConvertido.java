@@ -37,7 +37,7 @@ public class RecienConvertido extends Vampiro {
             velocidad = velocidad - 50;
         }
         else{
-            System.out.println(nombre + " no puede utilizar su habilidad especial ya que su atributo unico (inestabilidad) es de :"+inestabilidad+". \nDebe ser menor a 20 puntos. (Comer reduce la inestabilidad)");
+            System.out.println(nombre + " no puede utilizar su habilidad especial ya que su atributo unico (inestabilidad) es de: "+inestabilidad+". \nDebe ser menor a 20 puntos. (Comer reduce la inestabilidad)");
         }
     }
 

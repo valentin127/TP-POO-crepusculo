@@ -415,7 +415,7 @@ public class Main {
                         case 8:
                             for (int i = 0; i < vampiros.size(); i++) {
                                 Vampiro vamp = vampiros.get(i);
-                                System.out.println((i + 1) + ". " + vamp.getNombre() + " | Hambre actual: " + vamp.getHambre() + ", Tipo: " + vamp.getClass().getSimpleName() + ")");
+                                System.out.println((i + 1) + ". " + vamp.getNombre() + " | Hambre actual: " + vamp.getHambre() + ", Tipo: " + vamp.getClass().getSimpleName());
                             }
                             System.out.println("Seleccione el número del vampiro que va a usar su habilidad:");
                             int vampiroSeleccionado1 = sc.nextInt() - 1;
