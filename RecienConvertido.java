@@ -30,14 +30,14 @@ public class RecienConvertido extends Vampiro {
     public void habilidadEspecial() {
         if (inestabilidad<20){
             System.out.println(nombre + " utiliza su habilidad de recién convertido: Velocidad Explosiva (50 puntos de velocidad temporales).");
-            System.out.println("Su velocidad antes de es: "+ velocidad);
+            System.out.println("Hambre: " + hambre + " --> " + 100);
             velocidad += 50;
-            System.out.println("Su velocidad despues de es: "+ velocidad);
             hambre = 100;
+            System.out.println("Velocidad: " + (velocidad-50) + " --> " + velocidad);
             velocidad = velocidad - 50;
         }
         else{
-            System.out.println(nombre + " no puede utilizar su habilidad especial ya que su atributo unico (inestabilidad) es de:"+inestabilidad+". \nDebe ser menor a 20 puntos, para que el vampiro pueda usarlo, comiendo baja su inestabilidad");
+            System.out.println(nombre + " no puede utilizar su habilidad especial ya que su atributo unico (inestabilidad) es de :"+inestabilidad+". \nDebe ser menor a 20 puntos. (Comer reduce la inestabilidad)");
         }
     }
 

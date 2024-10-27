@@ -29,12 +29,11 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
     public void habilidadEspecial() {
         if(condicion>70){
             System.out.println(nombre + " utiliza su habilidad de vampiro adulto: Agilidad (su fuerza y su velocidad aumentan 25 puntos temporalmente).");
-            System.out.println("Su velocidad antes de es: "+ velocidad);
-            System.out.println("Su fuerza antes de es: "+ fuerza);
+            System.out.println("Hambre: " + hambre + " --> " + 100);
             velocidad += 25;
             fuerza += 25;
-            System.out.println("Su velocidad despues de es: "+ velocidad);
-            System.out.println("Su fuerza despues de es: "+ fuerza);
+            System.out.println("Velocidad: " + (velocidad-25) + " --> " + velocidad);
+            System.out.println("Fuerza: " + (fuerza-25) + " --> " + fuerza);
             hambre = 100;
             fuerza = fuerza - 25;
             velocidad = velocidad - 25;
@@ -43,7 +42,7 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
             
         }
         else{
-            System.out.println(nombre + " no puede utilizar su habilidad especial ya que su atributo unico (condicion) es de:"+condicion+". \nDebe ser mayor a 70 puntos, para que el vampiro pueda usarlo, comiendo sube su condicion");
+            System.out.println(nombre + " no puede utilizar su habilidad especial ya que su atributo unico (condicion) es de: "+condicion+". \nDebe ser mayor a 70 puntos. (Comer aumenta su condicion)");
         }
 
         
