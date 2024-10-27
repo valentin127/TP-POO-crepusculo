@@ -236,27 +236,27 @@ public class Main {
                         break;
                     
                     case 7:
-                    System.out.println("Opción 7 - Vampiro más apto (fuerza + velocidad): ");
+                        System.out.println("Opción 7 - Vampiro más apto (fuerza + velocidad): ");
                 
-                    Vampiro vampiroMasApto = null;
-                    int mayorAptitud = 0; 
-                    for (Vampiro vamp : vampiros) {
-                        int aptitudActual = vamp.fuerza + vamp.velocidad;  // Calcular la suma de fuerza y velocidad
-                        if (aptitudActual > mayorAptitud) {
-                            mayorAptitud = aptitudActual;  // Actualizar la mayor aptitud
-                            vampiroMasApto = vamp;  // Guardar al vampiro más apto hasta ahora
+                        Vampiro vampiroMasApto = null;
+                        int mayorAptitud = 0; 
+                        for (Vampiro vamp : vampiros) {
+                            int aptitudActual = vamp.fuerza + vamp.velocidad;  // Calcular la suma de fuerza y velocidad
+                            if (aptitudActual > mayorAptitud) {
+                                mayorAptitud = aptitudActual;  // Actualizar la mayor aptitud
+                                vampiroMasApto = vamp;  // Guardar al vampiro más apto hasta ahora
+                            }
                         }
-                    }
-                    if (vampiroMasApto != null) {
-                        System.out.println("El vampiro más apto es: " + vampiroMasApto.nombre + " con fuerza " + vampiroMasApto.fuerza + " y velocidad " + vampiroMasApto.velocidad + " (Total: " + mayorAptitud + ")" + " , posee un hambre de: "+ vampiroMasApto.hambre);
-                    } else {
-                        System.out.println("No hay vampiros en la lista.");
-                    }
-                    break;
+                        if (vampiroMasApto != null) {
+                            System.out.println("El vampiro más apto es: " + vampiroMasApto.nombre + " con fuerza " + vampiroMasApto.fuerza + " y velocidad " + vampiroMasApto.velocidad + " (Total: " + mayorAptitud + ")" + " , posee un hambre de: "+ vampiroMasApto.hambre);
+                        } else {
+                            System.out.println("No hay vampiros en la lista.");
+                        }
+                        break;
                     case 8:
-                    System.out.println("Guardando los vampiros y saliendo del programa...");
+                        System.out.println("Guardando los vampiros y saliendo del programa...");
                 
-                    try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV))) {
+                        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV))) {
                         bw.write("Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas,Antiguedad del clan \n");
                 
                         for (Vampiro vamp : vampiros) {
@@ -275,13 +275,13 @@ public class Main {
                                      }
                                     }
                         
-                    } catch (IOException e) {
+                        } catch (IOException e) {
                         System.out.println("Error al guardar los vampiros en el archivo CSV: " + e.getMessage());
-                    }
+                        }
                 
-                    sc.close();
-                    ciclo = false;
-                    break;
+                        sc.close();
+                        ciclo = false;
+                        break;
                 
                     default:
                         System.out.println("Opción no válida");
