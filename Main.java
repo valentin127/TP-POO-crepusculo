@@ -22,6 +22,8 @@ public class Main {
 
                 String linea;
                 boolean primeraLinea = true;
+
+                System.out.println("\nLeyendo datos del archivo "+archivoCSV+" ...\n");
                 while ((linea = br.readLine()) != null) {
                     if (primeraLinea) {
                         primeraLinea = false;  
@@ -76,7 +78,7 @@ public class Main {
                     switch (opcion) {
                         case 1:
                             // Mostrar clanes
-                            System.out.println("Clanes:");
+                            System.out.println("\nClanes:");
                             for (Clan clan : clanes) {
                                 System.out.println("- " + clan);
                             }
@@ -115,7 +117,7 @@ public class Main {
                         case 4:
                             System.out.println("Opcion 4 - Admitir vampiro a un clan");
                             // Código para admitir vampiro a clan
-                            System.out.println("Ingrese el nombre del clan: ");
+                            System.out.println("Ingresa el nombre del clan: ");
                             String nombreClan = sc.nextLine();
 
                             Clan clanExistente = null;
@@ -134,7 +136,7 @@ public class Main {
                                 break;
                             }
 
-                            System.out.println("Ingrese el nombre del vampiro: ");
+                            System.out.println("Ingresa el nombre del vampiro: ");
                             String nombreVampiro = sc.nextLine();
 
                             Vampiro vampiroExistente = null;
@@ -160,7 +162,7 @@ public class Main {
                             System.out.println("Opción 5 - Expulsar vampiro de un clan\n");
                             // Código para expulsar vampiro de su clan
                             // Usamos un 2 en las variables porque java da un error raro con la variable definida en otro case
-                            System.out.println("Ingrese el nombre del clan: ");
+                            System.out.println("Ingresa el nombre del clan: ");
                             String nombreClan2 = sc.nextLine();
 
                             Clan clanExistente2 = null;
@@ -179,7 +181,7 @@ public class Main {
                                 break;
                             }
                         
-                            System.out.println("Ingrese el nombre del vampiro: ");
+                            System.out.println("Ingresa el nombre del vampiro: ");
                             String nombreVampiro2 = sc.nextLine();
 
                             Vampiro vampiroExistente2 = null;
@@ -303,6 +305,32 @@ public class Main {
                                 }
                             else {
                                 System.out.println("Selección inválida.");
+                            }
+                            break;
+
+                        case 9:
+                            // Crear un nuevo clan
+                            System.out.println("Ingresa el nombre del nuevo clan comun:");
+                            String nombreClanNuevo = sc.nextLine();
+                            System.out.println("Ingresa los años de antiguedad de ese clan:");
+                            int años = sc.nextInt();
+                            // Verifica si el clan ya existe
+                            Clan clanNuevo = null;
+                            boolean existeClan = false;
+                            for (Clan existente : clanes) {
+                                if (existente.getNombreClan().equalsIgnoreCase(nombreClanNuevo)) {  // Comparar nombres de clanes (ignorar mayúsculas)
+                                    existeClan = true;
+                                    break;
+                                }
+                            }
+                            // Si el clan ya existe, no se puede crear
+                            if (existeClan) {
+                                System.out.println("Ya existe un clan con ese nombre:");
+                                break;
+                            } else {
+                                // Si el clan no existe, añade un nuevo clan
+                                ClanComun nuevoClan = new ClanComun(nombreClanNuevo, años);
+                                clanes.add(nuevoClan);
                             }
                             break;
 
