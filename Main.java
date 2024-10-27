@@ -28,7 +28,7 @@ public class Main {
                 String linea;
                 boolean primeraLinea = true;
 
-                System.out.println("\nLeyendo datos del archivo "+archivoCSV+" ...\n");
+                
                 while ((linea = br.readLine()) != null) {
                     if (primeraLinea) {
                         primeraLinea = false;  
@@ -62,12 +62,12 @@ public class Main {
                         }
                         // Si el clan existe, admite al vampiro en el clan existente
                         if (clanExistente != null) {
-                            clanExistente.admitirVampiro(vampiro);
+                            clanExistente.IniciarClanes(vampiro);
                         } else {
                             // Si el clan no existe, añade un nuevo clan y admite al vampiro
                             ClanComun nuevoClan = new ClanComun(clanNombre, años);
                             clanes.add(nuevoClan);
-                            nuevoClan.admitirVampiro(vampiro); 
+                            nuevoClan.IniciarClanes(vampiro); 
                         }
                     }
                 }
@@ -412,35 +412,57 @@ public class Main {
                             }
                             break;
 
-                        case 8:
-                            for (int i = 0; i < vampiros.size(); i++) {
-                                Vampiro vamp = vampiros.get(i);
-                                System.out.println((i + 1) + ". " + vamp.getNombre() + " | Hambre actual: " + vamp.getHambre() + ", Tipo: " + vamp.getClass().getSimpleName());
-                            }
-                            System.out.println("Seleccione el número del vampiro que va a usar su habilidad:");
-                            int vampiroSeleccionado1 = sc.nextInt() - 1;
-                            sc.nextLine();
-
-                            if (vampiroSeleccionado1 >= 0 && vampiroSeleccionado1 < vampiros.size()) {
-                                Vampiro vampiroQueaactiva = vampiros.get(vampiroSeleccionado1);
-                                if (vampiroQueaactiva instanceof RecienConvertido) {
-                                    System.out.println(vampiroQueaactiva.getNombre() + " es un vampiro tipo RecienConvertido y intenta usar su habilidad.");
-                                    vampiroQueaactiva.habilidadEspecial();
-                             
-                                } 
-                                else if (vampiroQueaactiva instanceof Maduro) {
-                                    System.out.println(vampiroQueaactiva.getNombre() + " es un vampiro tipo  Maduro, y intenta usar su habilidad..");
-                                    vampiroQueaactiva.habilidadEspecial();
-                                } 
-                                else if (vampiroQueaactiva instanceof Adulto) {
-                                    System.out.println(vampiroQueaactiva.getNombre() + " es un vampiro tipo Adulto, y intenta usar su habilidad..");
-                                    vampiroQueaactiva.habilidadEspecial();
-                                    }
+                            case 8:
+                            System.out.println("Opción 8 - Usar habilidad especial");
+                            boolean continuarHabilidad = true;
+                        
+                            int vampiroSeleccionado1 = -1;
+                            while (true) {
+                                // Mostrar la lista de vampiros
+                                for (int i = 0; i < vampiros.size(); i++) {
+                                    Vampiro vamp = vampiros.get(i);
+                                    System.out.println((i + 1) + ". Vampiro: " + vamp.getNombre() + " (Hambre actual: " + vamp.getHambre() + ")");
                                 }
-                            else {
-                                System.out.println("Selección inválida.");
+                                System.out.println("Seleccione el número del vampiro que va a usar su habilidad (o escribe 'cancelar' para cancelar):");
+                                String input = sc.nextLine();
+                            
+                                if (input.equalsIgnoreCase("cancelar")) {
+                                    System.out.println("Operación cancelada.");
+                                    continuarHabilidad = false;
+                                    break;
+                                }
+                            
+                                try {
+                                    vampiroSeleccionado1 = Integer.parseInt(input) - 1;
+                            
+                                    if (vampiroSeleccionado1 >= 0 && vampiroSeleccionado1 < vampiros.size()) {
+                                        break; // Salir del ciclo si la selección es válida
+                                    } else {
+                                        System.out.println("Selección inválida. Por favor, elija un número de la lista.");
+                                    }
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Entrada inválida. Debe ser un número entero.");
+                                }
+                            }
+                        
+                            if (continuarHabilidad == false) break;
+                        
+                            // Proceso después de seleccionar un vampiro
+                            Vampiro vampiroQueaactiva = vampiros.get(vampiroSeleccionado1);
+                            if (vampiroQueaactiva instanceof RecienConvertido) {
+                                System.out.println(vampiroQueaactiva.getNombre() + " es un vampiro tipo RecienConvertido y va a usar su habilidad.");
+                                vampiroQueaactiva.habilidadEspecial();
+                            } 
+                            else if (vampiroQueaactiva instanceof Maduro) {
+                                System.out.println(vampiroQueaactiva.getNombre() + " es un vampiro tipo Maduro y va a usar su habilidad.");
+                                vampiroQueaactiva.habilidadEspecial();
+                            } 
+                            else if (vampiroQueaactiva instanceof Adulto) {
+                                System.out.println(vampiroQueaactiva.getNombre() + " es un vampiro tipo Adulto y va a usar su habilidad.");
+                                vampiroQueaactiva.habilidadEspecial();
                             }
                             break;
+                        
 
                         case 9:
                             // Crear un nuevo clan
@@ -495,11 +517,11 @@ public class Main {
                             // Eliminar un clan existente
                             System.out.println("Ingresa el nombre del clan a eliminar:");
                             String nombreClanAEliminar = sc.nextLine();
-                            if (nombreClanAEliminar.equals("Sin clan")) {
+                            if (nombreClanAEliminar.equals("Sin clan") || nombreClanAEliminar.equals("Sin Clan")) {
                                 System.out.println("No se puede eliminar \"Sin clan\"");
                                 break;
                             }
-                            if (nombreClanAEliminar.equals("Volturi")) {
+                            if (nombreClanAEliminar.equals("Volturi") || nombreClanAEliminar.equals("volturi")) {
                                 System.out.println("No se puede eliminar \"Volturi\"");
                                 break;
                             }
