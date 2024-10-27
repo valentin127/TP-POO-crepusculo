@@ -23,10 +23,9 @@ public class Main {
             boolean primeraLinea = true;
             while ((linea = br.readLine()) != null) {
                 if (primeraLinea) {
-                    primeraLinea = false;  // Saltar la primera línea (cabeceras)
+                    primeraLinea = false;  
                     continue;
                 }
-                // Suponiendo que las columnas del CSV son: Nombre, Edad, Fuerza, Velocidad, Hambre, ColorOjos, Clan, TieneAlas
                 String[] datos = linea.split(",");
                 String nombre = datos[0];
                 int fuerza = Integer.parseInt(datos[1]);
@@ -72,7 +71,7 @@ public class Main {
             while (ciclo) {
                 System.out.println("Sistema gestor de crepusculo: \n1. Mostrar clanes\n2. Crear Vampiro\n3. Listar vampiros\n4. Admitir vampiro a un clan\n5. Expulsar vampiro de un clan\n6. Comer\n7. Obtener vampiro más apto\n8. Salir");
                 int opcion = sc.nextInt();
-                sc.nextLine();  // Consumir el salto de línea después del int
+                sc.nextLine();  
                 switch (opcion) {
                     case 1:
                         // Mostrar clanes
@@ -91,15 +90,10 @@ public class Main {
                         int velocidad = sc.nextInt();
                         System.out.println("Ingresa el hambre del vampiro:");
                         int hambre = sc.nextInt();
-                        sc.nextLine();  // Consumir el salto de línea
-
+                        sc.nextLine();  
                         System.out.println("¿Tiene alas? (si/no):");
                         String alas = sc.nextLine();
-
-                        // Crear vampiro usando la clase Crear_vampiro
                         Crear_vampiro creador = new Crear_vampiro(nombre, fuerza, velocidad, hambre, alas);
-
-                        // Obtener el vampiro creado y añadirlo a la lista si no es null
                         Vampiro nuevoVampiro = creador.obtenerVampiroCreado();
                         if (nuevoVampiro != null) {
                             vampiros.add(nuevoVampiro);
@@ -196,17 +190,29 @@ public class Main {
                         // Código para comer
                         break;
                     case 7:
-                        System.out.println("Opcion 7");
-                        // Código para obtener el vampiro más apto
-                        break;
+                    System.out.println("Opción 7 - Vampiro más apto (fuerza + velocidad): ");
+                
+                    Vampiro vampiroMasApto = null;
+                    int mayorAptitud = 0; 
+                    for (Vampiro vamp : vampiros) {
+                        int aptitudActual = vamp.fuerza + vamp.velocidad;  // Calcular la suma de fuerza y velocidad
+                        if (aptitudActual > mayorAptitud) {
+                            mayorAptitud = aptitudActual;  // Actualizar la mayor aptitud
+                            vampiroMasApto = vamp;  // Guardar al vampiro más apto hasta ahora
+                        }
+                    }
+                    if (vampiroMasApto != null) {
+                        System.out.println("El vampiro más apto es: " + vampiroMasApto.nombre + " con fuerza " + vampiroMasApto.fuerza + " y velocidad " + vampiroMasApto.velocidad + " (Total: " + mayorAptitud + ")" + " , posee un hambre de: "+ vampiroMasApto.hambre);
+                    } else {
+                        System.out.println("No hay vampiros en la lista.");
+                    }
+                    break;
                     case 8:
                     System.out.println("Guardando los vampiros y saliendo del programa...");
                 
                     try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV))) {
-                        // Escribir la cabecera
                         bw.write("Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas,a \n");
                 
-                        // Escribir cada vampiro en el archivo CSV
                         for (Vampiro vamp : vampiros) {
                             bw.write(vamp.nombre + "," 
                                     + vamp.fuerza + "," 
@@ -236,7 +242,7 @@ public class Main {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace(); // Imprime la traza del error en la consola
+            e.printStackTrace(); 
         }
     }
 }
