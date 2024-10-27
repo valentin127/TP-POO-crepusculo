@@ -191,14 +191,12 @@ public class Main {
                     case 8:
                     System.out.println("Guardando los vampiros y saliendo del programa...");
                 
-                    // Guardar los cambios en el archivo CSV
                     try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV))) {
                         // Escribir la cabecera
                         bw.write("Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas,a \n");
                 
                         // Escribir cada vampiro en el archivo CSV
                         for (Vampiro vamp : vampiros) {
-                            // Acceder directamente a los atributos del vampiro y escribirlos en el archivo
                             bw.write(vamp.nombre + "," 
                                     + vamp.fuerza + "," 
                                     + vamp.velocidad + "," 
@@ -206,8 +204,14 @@ public class Main {
                                     + vamp.ColorOjos + "," 
                                     + vamp.Clan + "," 
                                     + (vamp.alas.equalsIgnoreCase("si") ? "si" : "no") + ","
-                                    + vamp.velocidad +"\n" );
-                        }
+                                     );
+                                     for (Clan clan : clanes) {
+                                        if (clan.getNombreClan().equalsIgnoreCase(vamp.Clan)) {
+                                            bw.write( clan.getEdad() + "\n");
+                                        }
+                                     }
+                                    }
+                        
                     } catch (IOException e) {
                         System.out.println("Error al guardar los vampiros en el archivo CSV: " + e.getMessage());
                     }

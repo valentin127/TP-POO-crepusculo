@@ -5,8 +5,9 @@ public class ClanComun extends Clan{
         this.antiguedadDelClan=adc;
     }
 
-    public int getAntiguedadDelClan() {
+
+    @Override
+    public int getEdad(){
         return antiguedadDelClan;
     }
-    
 }
