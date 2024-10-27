@@ -37,8 +37,8 @@ public abstract class Vampiro{
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + ", Fuerza: " + fuerza + ", Velocidad: " + velocidad +
-               ", Hambre: " + hambre + ", Color de Ojos: " + ColorOjos + ", Clan: " + Clan+
-               ", Alas: " + alas;
+        return nombre + " | Fuerza: " + fuerza + ", Velocidad: " + velocidad +
+           ", Hambre: " + hambre + ", Color de Ojos: " + ColorOjos + ", Clan: " + Clan +
+           ", Tipo: " + getClass().getSimpleName() + ", Alas: " + alas;
     }
 }
