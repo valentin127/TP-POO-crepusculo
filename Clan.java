@@ -4,7 +4,7 @@ import java.util.List;
 public abstract class Clan {
     protected  String nombreClan;
     protected List<Vampiro> vampiros;
-    protected int edad;
+    private int edad;
 
     public Clan(String nombreClan) {
         this.nombreClan = nombreClan;
