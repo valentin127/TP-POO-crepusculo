@@ -1,48 +1,53 @@
+import java.util.Random;
+
 public class Adulto extends Vampiro implements ComedorDeAnimales {
     
-    private int sabiduria = 10;
+    private int condicion = 10;
 
     Adulto(String n,int f, int v, int h,String c,String clan, String a){
         super(n, f, v, h,c,clan, a);
+        this.condicion = GenerarCondicion();
     }
 
     @Override
     public void comer() {
-        if (hambre > 0) {
-            System.out.println(nombre + " está comiendo para saciar su hambre.");
-            hambre -= 10;
-            if (hambre < 0) {
-                hambre = 0;
+        if (hambre>1) {
+            Random random = new Random();
+            hambre = hambre - random.nextInt(99)+1;
+            condicion = 80;
+            if (hambre<0) {
+                hambre = 1;
             }
-        } else {
+        }
+        else {
             System.out.println(nombre + " no tiene hambre en este momento.");
         }
+
     }
 
     @Override
     public void habilidadEspecial() {
-        System.out.println(nombre + " utiliza su habilidad de vampiro adulto: Agilidad.");
-        velocidad += 25;
-        fuerza += 25;
-        sabiduria += 5;
-        if (velocidad > 100) {
-            velocidad = 100;
+        if(condicion>70){
+            System.out.println(nombre + " utiliza su habilidad de vampiro adulto: Agilidad.");
+            velocidad += 25;
+            fuerza += 25;
+            
         }
-        if (fuerza > 100) {
-            fuerza = 100;
+        else{
+            System.out.println(nombre + " no puede utilizar su habilidad especial ya que su atributo unico (condicion) es de:"+condicion+". \nDebe ser mayor a 70 puntos, para que el vampiro pueda usarlo, comiendo sube su condicion");
         }
-        if (sabiduria > 100) {
-            sabiduria = 100;
-        }
+
+        
     }
 
     @Override
     public void comerAnimal(){
-        if (hambre > 0) {
-            System.out.println(nombre + " está comiendo un animal para saciar su hambre.");
-            hambre -= 15;
+        if (hambre > 1) {
+            Animal animal = new Animal();
+            hambre = hambre - animal.getHambre();
+            condicion = 80;
             if (hambre < 0) {
-                hambre = 0;
+                hambre = 1;
             }
         } else {
             System.out.println(nombre + " no tiene hambre en este momento.");
@@ -50,7 +55,12 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
     }
 
     
-    public int getSabiduria() {
-        return sabiduria;
+    public int getCoondicon() {
+        return condicion;
+    }
+
+    private int GenerarCondicion(){
+        Random random = new Random();
+        return random.nextInt(99) + 1; 
     }
 }

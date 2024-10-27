@@ -7,39 +7,33 @@ public class RecienConvertido extends Vampiro {
         super(n, f, v, h,c,clan, a);
         this.inestabilidad = generarInestabilidadAleatorio();
     }
-
-    /*@Override
-    public void comerAnimal() {
-        if (hambre > 1) {
-            Animal animal = new Animal();
-            hambre = hambre - animal.getHambre();
-            if (hambre<0) {
-                hambre = 1;
-            }
-
-        } else {
-            System.out.println(nombre + " no tiene hambre en este momento.");
-        }
-    }*/
     @Override
-    public void comer(){
+    public void comer() {
+        if (hambre>1) {
+            
+        
         Random random = new Random();
         hambre = hambre - random.nextInt(99)+1;
-            if (hambre<0) {
+        inestabilidad = 10;
+            if (hambre<=0 ) {
                 hambre = 1;
             }
+        }
+        else {
+            System.out.println(nombre + " no tiene hambre en este momento.");
+        }
+
+
     }
 
     @Override
     public void habilidadEspecial() {
-        System.out.println(nombre + " utiliza su habilidad de recién convertido: Velocidad Explosiva.");
-        velocidad += 50;
-        inestabilidad -= 10;
-        if (velocidad > 100) {
-            velocidad = 100;
+        if (inestabilidad<20){
+            System.out.println(nombre + " utiliza su habilidad de recién convertido: Velocidad Explosiva (50 puntos de velocidad).");
+            velocidad += 50;
         }
-        if (inestabilidad > 100) {
-            inestabilidad = 100;
+        else{
+            System.out.println(nombre + " no puede utilizar su habilidad especial ya que su atributo unico (inestabilidad) es de:"+inestabilidad+". \nDebe ser menor a 20 puntos, para que el vampiro pueda usarlo, comiendo baja su inestabilidad");
         }
     }
 

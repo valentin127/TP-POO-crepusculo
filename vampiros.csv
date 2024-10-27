@@ -1,6 +1,6 @@
 Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas,Antiguedad del clan 
-Edward,80,60,20,naraja,Sin clan,si,0
-Bella,60,70,50,naraja,Cullen,si,0
-Aro,40,80,30,amarillo,PRUEBA,no,0
-Jane,50,100,40,amarillo,PRUEBA,no,0
-peter,60,40,10,naraja,PRUEBA,no,0
+Edward,80,60,100,naraja,Sin clan,si,0
+Bella,60,70,100,naraja,Cullen,si,0
+Aro,40,80,100,amarillo,PRUEBA,no,0
+Jane,50,100,100,amarillo,PRUEBA,no,0
+peter,60,40,100,naraja,PRUEBA,no,0
