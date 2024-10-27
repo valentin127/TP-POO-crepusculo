@@ -33,33 +33,35 @@ public class Main {
                 int velocidad = Integer.parseInt(datos[2]);
                 int hambre = Integer.parseInt(datos[3]);
                 //String ColorOjos = datos[4];
-                String clan = datos[5];
+                String clanNombre = datos[5];
                 String alas = datos[6].equalsIgnoreCase("si") ? "si" : "no";  // Convertir el texto a una respuesta booleana
                 int años = Integer.parseInt(datos[7]);
 
                 // Crear vampiro con los datos leídos usando la clase Crear_vampiro
-                Crear_vampiro creador = new Crear_vampiro(nombre, fuerza, velocidad, hambre, clan, alas);
-                ClanComun cl = new ClanComun(clan, años);
+                Crear_vampiro creador = new Crear_vampiro(nombre, fuerza, velocidad, hambre, clanNombre, alas);
 
                 // Obtener el vampiro creado y añadirlo a la lista si no es null
                 Vampiro vampiro = creador.obtenerVampiroCreado();
                 if (vampiro != null) {
                     vampiros.add(vampiro);  // Añadir vampiro a la lista
-                    boolean existe = false;
+                   
+                     // Verifica si el clan ya existe
+                    Clan clanExistente = null;
                     for (Clan existente : clanes) {
-                        if (existente.getNombreClan().equalsIgnoreCase(cl.getNombreClan())) {  // Comparar nombres de clanes (ignorar mayúsculas)
-                            existe = true;
+                        if (existente.getNombreClan().equalsIgnoreCase(clanNombre)) {  // Comparar nombres de clanes (ignorar mayúsculas)
+                            clanExistente = existente;
                             break;
                         }
                     }
-
-                    // Si el clan no existe, añadirlo a la lista de clanes
-                    if (!existe) {
-                        clanes.add(cl);
+                    // Si el clan existe, admite al vampiro en el clan existente
+                    if (clanExistente != null) {
+                        clanExistente.admitirVampiro(vampiro);
+                    } else {
+                        // Si el clan no existe, añade un nuevo clan y admite al vampiro
+                        ClanComun nuevoClan = new ClanComun(clanNombre, años);
+                        clanes.add(nuevoClan);
+                        nuevoClan.admitirVampiro(vampiro);
                     }
-
-                    // Se admite al vampiro en su clan - por ahora no se porque pero no funciona si estan en "Sin clan"
-                    cl.admitirVampiro(vampiro);
                 }
             }
 
@@ -76,7 +78,7 @@ public class Main {
                         // Mostrar clanes
                         System.out.println("Clanes:");
                         for (Clan clan : clanes) {
-                            System.out.println("- "+clan);
+                            System.out.println("- " + clan);
                         }
                         break;
                     case 2:
