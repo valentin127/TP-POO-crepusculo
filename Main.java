@@ -14,6 +14,11 @@ public class Main {
 
         // Leer el archivo CSV
         try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
+
+            // Se crea el clan "Sin clan"
+            Clan sinClan = new ClanComun("Sin clan", 0);
+            clanes.add(sinClan);
+
             String linea;
             boolean primeraLinea = true;
             while ((linea = br.readLine()) != null) {
@@ -52,6 +57,9 @@ public class Main {
                     if (!existe) {
                         clanes.add(cl);
                     }
+
+                    // Se admite al vampiro en su clan - por ahora no se porque pero no funciona si estan en "Sin clan"
+                    cl.admitirVampiro(vampiro);
                 }
             }
 
@@ -93,6 +101,7 @@ public class Main {
                         Vampiro nuevoVampiro = creador.obtenerVampiroCreado();
                         if (nuevoVampiro != null) {
                             vampiros.add(nuevoVampiro);
+                            sinClan.admitirVampiro(nuevoVampiro);
                             System.out.println("Vampiro creado y añadido a la lista.");
                         } else {
                             System.out.println("Error al crear el vampiro. Verifica los valores ingresados.");

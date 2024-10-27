@@ -26,8 +26,8 @@ public abstract class Clan {
     public void listarVampiros() {
         System.out.println("Vampiros en el clan " + nombreClan + ":");
         for (int i = 0; i < vampiros.size(); i++) {
-        Vampiro vampiro = vampiros.get(i);
-        System.out.println("- " + vampiro.getNombre());
+            Vampiro vampiro = vampiros.get(i);
+            System.out.println("- " + vampiro);
         }
     }
 
