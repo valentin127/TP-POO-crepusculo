@@ -1,8 +1,6 @@
 import java.util.Random;
 public class RecienConvertido extends Vampiro {
-
     private int inestabilidad = 50;
-
     RecienConvertido(String n,int f, int v, int h,String c,String clan, String a){
         super(n, f, v, h,c,clan, a);
         this.inestabilidad = generarInestabilidadAleatorio();
@@ -10,8 +8,6 @@ public class RecienConvertido extends Vampiro {
     @Override
     public void comer() {
         if (hambre>1) {
-            
-        
         Random random = new Random();
         hambre = hambre - random.nextInt(99)+1;
         inestabilidad = 10;
@@ -22,10 +18,7 @@ public class RecienConvertido extends Vampiro {
         else {
             System.out.println(nombre + " no tiene hambre en este momento.");
         }
-
-
     }
-
     @Override
     public void habilidadEspecial() {
         if (inestabilidad<20){
@@ -40,11 +33,9 @@ public class RecienConvertido extends Vampiro {
             System.out.println(nombre + " no puede utilizar su habilidad especial ya que su atributo unico (inestabilidad) es de: "+inestabilidad+". \nDebe ser menor a 20 puntos. (Comer reduce la inestabilidad)");
         }
     }
-
     public int getInestabilidad() {
         return inestabilidad;
     }
-
     private int generarInestabilidadAleatorio() {
         Random random = new Random();
         return random.nextInt(99) + 1; 

@@ -10,25 +10,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         try {
-            String archivoCSV = "vampiros.csv"; // Ruta del archivo CSV
-            ArrayList<Clan> clanes = new ArrayList<>(); // Utilizamos un Set para almacenar clanes únicos
-            ArrayList<Vampiro> vampiros = new ArrayList<>();  // Lista para almacenar vampiros
-
-            // Leer el archivo CSV
+            String archivoCSV = "vampiros.csv"; 
+            ArrayList<Clan> clanes = new ArrayList<>(); 
+            ArrayList<Vampiro> vampiros = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
-
-                // Se crea el clan "Sin clan"
                 Clan sinClan = new ClanComun("Sin clan", 0);
                 clanes.add(sinClan);
-
-                // Se crea el clan "Volturi"
                 Clan volturi = new Volturi("Volturi", 100);
                 clanes.add(volturi);
-
                 String linea;
                 boolean primeraLinea = true;
-
-                
                 while ((linea = br.readLine()) != null) {
                     if (primeraLinea) {
                         primeraLinea = false;  
@@ -39,20 +30,13 @@ public class Main {
                     int fuerza = Integer.parseInt(datos[1]);
                     int velocidad = Integer.parseInt(datos[2]);
                     int hambre = Integer.parseInt(datos[3]);
-                    // String ColorOjos = datos[4];
                     String clanNombre = datos[5];
-                    String alas = datos[6].equalsIgnoreCase("si") ? "si" : "no";  // Convertir el texto a una respuesta booleana
+                    String alas = datos[6].equalsIgnoreCase("si") ? "si" : "no"; 
                     int años = Integer.parseInt(datos[7]);
-
-                    // Crear vampiro con los datos leídos usando la clase Crear_vampiro
                     Crear_vampiro creador = new Crear_vampiro(nombre, fuerza, velocidad, hambre, clanNombre, alas);
-
-                    // Obtener el vampiro creado y añadirlo a la lista si no es null
                     Vampiro vampiro = creador.obtenerVampiroCreado();
                     if (vampiro != null) {
-                        vampiros.add(vampiro);  // Añadir vampiro a la lista
-                       
-                        // Verifica si el clan ya existe
+                        vampiros.add(vampiro); 
                         Clan clanExistente = null;
                         for (Clan existente : clanes) {
                             if (existente.getNombreClan().equalsIgnoreCase(clanNombre)) {  // Comparar nombres de clanes (ignorar mayúsculas)
@@ -535,14 +519,11 @@ public class Main {
                             }
 
                             if (clanAEliminar != null) {
-                                // Mover los vampiros al clan "Sin clan"
                                 List<Vampiro> vampirosAExpulsar = clanAEliminar.getVampiros();
                                 for (Vampiro vampiro : vampirosAExpulsar) {
                                     sinClan.admitirVampiro(vampiro);
                                     vampiro.Clan= "Sin clan";
                                 }
-
-                                // Eliminar el clan de la lista de clanes
                                 clanes.remove(clanAEliminar);
                                 System.out.println("El clan '" + clanAEliminar + "' ha sido eliminado");
                             } else {
@@ -551,11 +532,9 @@ public class Main {
                             break;
 
                         case 11:
-                            System.out.println("Guardando los vampiros y saliendo del programa...");
-                        
+                            System.out.println("Guardando los vampiros y saliendo del programa...");  
                             try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV))) {
                                 bw.write("Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas,Antiguedad del clan \n");
-                        
                                 for (Vampiro vamp : vampiros) {
                                     bw.write(vamp.nombre + "," 
                                             + vamp.fuerza + "," 
@@ -567,19 +546,21 @@ public class Main {
                                              );
                                              for (Clan clan : clanes) {
                                                 if (clan.getNombreClan().equalsIgnoreCase(vamp.Clan)) {
-                                                    bw.write( clan.getEdad() + "\n");
+                                                    if (clan instanceof ClanComun) {
+                                                        ClanComun clanComun = (ClanComun) clan;
+                                                        bw.write(clanComun.getAntiguedadDelClan() + "\n");
+                                                    } else if (clan instanceof Volturi) {
+                                                        bw.write("3000\n");
+                                                    }
                                                 }
                                              }
                                             }
-                                
                             } catch (IOException e) {
                                 System.out.println("Error al guardar los vampiros en el archivo CSV: " + e.getMessage());
                             }
-                        
                             sc.close();
                             ciclo = false;
                             break;
-                        
                         default:
                             System.out.println("Opción no válida");
                     }

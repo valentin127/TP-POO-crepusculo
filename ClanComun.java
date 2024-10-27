@@ -3,11 +3,8 @@ public class ClanComun extends Clan{
     public ClanComun(String nombreClan, int adc) {
         super(nombreClan);
         this.antiguedadDelClan=adc;
-    }
-
-
-    @Override
-    public int getEdad(){
+    }    
+    public int getAntiguedadDelClan(){
         return antiguedadDelClan;
     }
 }

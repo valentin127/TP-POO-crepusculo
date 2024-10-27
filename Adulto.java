@@ -1,14 +1,10 @@
 import java.util.Random;
-
 public class Adulto extends Vampiro implements ComedorDeAnimales {
-    
     private int condicion = 10;
-
     Adulto(String n,int f, int v, int h,String c,String clan, String a){
         super(n, f, v, h,c,clan, a);
         this.condicion = GenerarCondicion();
     }
-
     @Override
     public void comer() {
         if (hambre>1) {
@@ -24,7 +20,6 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
         }
 
     }
-
     @Override
     public void habilidadEspecial() {
         if(condicion>70){
@@ -37,17 +32,11 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
             hambre = 100;
             fuerza = fuerza - 25;
             velocidad = velocidad - 25;
-            
-
-            
         }
         else{
             System.out.println(nombre + " no puede utilizar su habilidad especial ya que su atributo unico (condicion) es de: "+condicion+". \nDebe ser mayor a 70 puntos. (Comer aumenta su condicion)");
         }
-
-        
     }
-
     @Override
     public void comerAnimal(){
         if (hambre > 1) {
@@ -61,12 +50,9 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
             System.out.println(nombre + " no tiene hambre en este momento.");
         }
     }
-
-    
     public int getCondicon() {
         return condicion;
     }
-
     private int GenerarCondicion(){
         Random random = new Random();
         return random.nextInt(99) + 1; 

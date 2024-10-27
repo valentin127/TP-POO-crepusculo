@@ -1,10 +1,10 @@
 Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas,Antiguedad del clan 
-Edward,100,60,100,naraja,Sin clan,si,0
+Edward,100,60,100,naraja,Volturi,si,3000
 Bella,60,70,100,naraja,Cullen,si,0
-Aro,40,80,100,amarillo,Volturi,no,100
-Jane,50,100,100,amarillo,Volturi,no,100
+Aro,40,80,100,amarillo,Volturi,no,3000
+Jane,50,100,100,amarillo,Volturi,no,3000
 peter,60,40,100,naraja,Cullen,no,0
-lolo,10,50,1,rojo,Sin clan,no,0
+lolo,10,50,1,rojo,Volturi,no,3000
 pepe,10,20,1,rojo,Sin clan,si,0
 juan,11,9,1,rojo,Sin clan,si,0
 aafaf,33,2,1,amarillo,Sin clan,si,0

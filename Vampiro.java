@@ -16,7 +16,6 @@ public abstract class Vampiro{
     }
     public abstract void comer();
     public abstract void habilidadEspecial();
-    //public abstract void comerAnimal();
     public String getNombre() {
         return nombre;
     }
@@ -38,8 +37,6 @@ public abstract class Vampiro{
     public String getClan(){
         return Clan;
     }
-
-
     @Override
     public String toString() {
         return nombre + " | Fuerza: " + fuerza + ", Velocidad: " + velocidad +

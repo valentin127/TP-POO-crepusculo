@@ -4,7 +4,6 @@ public class Volturi extends Clan{
         super(nombreClan);
         this.influenciaPolitica = influenciaPolitica;
     }
-
     @Override
     public void expulsarVampiro(Vampiro vampiro) {
         if (influenciaPolitica < 80) {
@@ -17,7 +16,6 @@ public class Volturi extends Clan{
             System.out.println("No se puede expulsar vampiros de" + nombreClan + "por su gran influencia politica");
         }
     }
-
     @Override
     public void admitirVampiro(Vampiro vampiro) {
         if(vampiro.getFuerza()>30 && vampiro.getVelocidad()>30){
@@ -27,13 +25,6 @@ public class Volturi extends Clan{
             System.out.println("Para ser admitido a los Volturi, " + vampiro.getNombre() + " debería tener al menos 30 de fuerza y 30 de velocidad");
         }
     }
-
-    @Override
-    public int getEdad(){
-        return 100;
-    }
-
-    // Nuevo método único de Volturi
     public void mostrarInfluenciaPolitica() {
         System.out.println("Influencia política de los Volturi: " + influenciaPolitica);
     }
