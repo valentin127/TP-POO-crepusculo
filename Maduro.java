@@ -37,22 +37,18 @@ public class Maduro extends Vampiro implements ComedorDeAnimales {
     }
 
     @Override
-    public void ComerAnimal(){
-        if (hambre > 0) {
-            System.out.println(nombre + " está comiendo un animal para saciar su hambre.");
-            autocontrol +=15;
-            hambre -= 20;
-            if (hambre < 0) {
-                hambre = 0;
+    public void comerAnimal() {
+        if (hambre > 1) {
+            Animal animal = new Animal();
+            hambre = hambre - animal.getHambre();
+            if (hambre<0) {
+                hambre = 1;
             }
-            if (autocontrol > 100) {
-                autocontrol = 100;
-            }
+
         } else {
             System.out.println(nombre + " no tiene hambre en este momento.");
         }
     }
-
     public int getAutocontrol() {
         return autocontrol;
     }

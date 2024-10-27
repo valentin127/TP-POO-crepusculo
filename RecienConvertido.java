@@ -1,34 +1,36 @@
-public class RecienConvertido extends Vampiro{
+import java.util.Random;
+public class RecienConvertido extends Vampiro {
 
     private int inestabilidad = 50;
 
     RecienConvertido(String n,int f, int v, int h,String c,String clan, String a){
         super(n, f, v, h,c,clan, a);
-        // Los recién convertidos podrían tener características específicas al ser creados.
+        this.inestabilidad = generarInestabilidadAleatorio();
     }
 
-    @Override
-    public void comer() {
-        if (hambre > 0) {
-            System.out.println(nombre + " está comiendo para saciar su hambre.");
-            inestabilidad -= 10;
-            hambre -= 20;
-            if (hambre < 0) {
-                hambre = 0;
+    /*@Override
+    public void comerAnimal() {
+        if (hambre > 1) {
+            Animal animal = new Animal();
+            hambre = hambre - animal.getHambre();
+            if (hambre<0) {
+                hambre = 1;
             }
-            if (inestabilidad < 0) {
-                inestabilidad = 0;
-            }
+
         } else {
             System.out.println(nombre + " no tiene hambre en este momento.");
         }
+    }*/
+    @Override
+    public void comer(){
+
     }
 
     @Override
     public void habilidadEspecial() {
         System.out.println(nombre + " utiliza su habilidad de recién convertido: Velocidad Explosiva.");
         velocidad += 50;
-        inestabilidad += 10;
+        inestabilidad -= 10;
         if (velocidad > 100) {
             velocidad = 100;
         }
@@ -41,4 +43,8 @@ public class RecienConvertido extends Vampiro{
         return inestabilidad;
     }
 
+    private int generarInestabilidadAleatorio() {
+        Random random = new Random();
+        return random.nextInt(99) + 1; 
+    }
 }

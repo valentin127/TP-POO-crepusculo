@@ -1,3 +1,3 @@
 public interface ComedorDeAnimales {
-    public void ComerAnimal();
+    public void comerAnimal();
 }
