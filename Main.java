@@ -517,11 +517,11 @@ public class Main {
                             // Eliminar un clan existente
                             System.out.println("Ingresa el nombre del clan a eliminar:");
                             String nombreClanAEliminar = sc.nextLine();
-                            if (nombreClanAEliminar.equals("Sin clan") || nombreClanAEliminar.equals("Sin Clan")) {
+                            if (nombreClanAEliminar.equalsIgnoreCase("Sin clan")) {
                                 System.out.println("No se puede eliminar \"Sin clan\"");
                                 break;
                             }
-                            if (nombreClanAEliminar.equals("Volturi") || nombreClanAEliminar.equals("volturi")) {
+                            if (nombreClanAEliminar.equalsIgnoreCase("Volturi")) {
                                 System.out.println("No se puede eliminar \"Volturi\"");
                                 break;
                             }
