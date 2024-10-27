@@ -21,6 +21,10 @@ public class Main {
                 Clan sinClan = new ClanComun("Sin clan", 0);
                 clanes.add(sinClan);
 
+                // Se crea el clan "Volturi"
+                Clan volturi = new Volturi("Volturi", 100);
+                clanes.add(volturi);
+
                 String linea;
                 boolean primeraLinea = true;
 
@@ -86,20 +90,128 @@ public class Main {
                             break;
 
                         case 2:
-                            // Crear nuevo vampiro manualmente
-                            System.out.println("Ingresa el nombre del vampiro:");
-                            String nombre = sc.nextLine();
-                            System.out.println("Ingresa la fuerza del vampiro (entre 1 y 100):");
-                            int fuerza = sc.nextInt();
-                            System.out.println("Ingresa la velocidad del vampiro:");
-                            int velocidad = sc.nextInt();
-                            System.out.println("Ingresa el hambre del vampiro:");
-                            int hambre = sc.nextInt();
-                            sc.nextLine();  
-                            System.out.println("¿Tiene alas? (si/no):");
-                            String alas = sc.nextLine();
+                            String nombre;
+                            int fuerza = 0;
+                            int velocidad = 0;
+                            int hambre = 0;
+                            String alas;
+                            boolean continuarCreacion = true;
+
+                            while (true) {
+                                System.out.println("Ingresa el nombre del vampiro (o escribe 'cancelar' para cancelar):");
+                                nombre = sc.nextLine();
+                            
+                                if (nombre.equalsIgnoreCase("cancelar")) {
+                                    System.out.println("Creación de vampiro cancelada.");
+                                    continuarCreacion = false;
+                                    break;
+                                }
+                            
+                                // Verificar si el vampiro ya existe
+                                boolean vampiroExiste = false;
+                                for (Vampiro vampiro : vampiros) {
+                                    if (vampiro.getNombre().equalsIgnoreCase(nombre)) { // Comparar ignorando mayúsculas
+                                        vampiroExiste = true;
+                                        break;
+                                    }
+                                }
+                            
+                                if (vampiroExiste) {
+                                    System.out.println("Ya existe un vampiro con el nombre " + nombre + ". Por favor, ingresa un nombre diferente.");
+                                } else {
+                                    break;
+                                }
+                            }
+
+                            if (!continuarCreacion) break;
+                            while (true) {
+                                System.out.println("Ingresa la fuerza del vampiro (entre 1 y 100) (o escribe 'cancelar' para cancelar):");
+                                String input = sc.nextLine();
+                                
+                                if (input.equalsIgnoreCase("cancelar")) {
+                                    System.out.println("Creación de vampiro cancelada.");
+                                    continuarCreacion = false;
+                                    break;
+                                }
+                                
+                                try {
+                                    fuerza = Integer.parseInt(input);
+                                    if (fuerza < 1 || fuerza > 100) {
+                                        System.out.println("La fuerza debe estar entre 1 y 100. Inténtalo de nuevo.");
+                                        continue; // Salta el break y vuelve a preguntar
+                                    }
+                                    break;
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Entrada inválida. Debe ser un número entero.");
+                                }
+                            }
+
+                            if (!continuarCreacion) break;
+                            while (true) {
+                                System.out.println("Ingresa la velocidad del vampiro (entre 1 y 100) (o escribe 'cancelar' para cancelar):");
+                                String input = sc.nextLine();
+                                
+                                if (input.equalsIgnoreCase("cancelar")) {
+                                    System.out.println("Creación de vampiro cancelada.");
+                                    continuarCreacion = false;
+                                    break;
+                                }
+                                
+                                try {
+                                    velocidad = Integer.parseInt(input);
+                                    if (velocidad < 1 || velocidad > 100) {
+                                        System.out.println("La velocidad debe estar entre 1 y 100. Inténtalo de nuevo.");
+                                        continue; // Salta el break y vuelve a preguntar
+                                    }
+                                    break;
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Entrada inválida. Debe ser un número entero.");
+                                }
+                            }
+
+                            if (!continuarCreacion) break;
+                            while (true) {
+                                System.out.println("Ingresa el hambre del vampiro (entre 1 y 100) (o escribe 'cancelar' para cancelar):");
+                                String input = sc.nextLine();
+                                
+                                if (input.equalsIgnoreCase("cancelar")) {
+                                    System.out.println("Creación de vampiro cancelada.");
+                                    continuarCreacion = false;
+                                    break;
+                                }
+                                
+                                try {
+                                    hambre = Integer.parseInt(input);
+                                    if (hambre < 1 || hambre > 100) {
+                                        System.out.println("El hambre debe estar entre 1 y 100. Inténtalo de nuevo.");
+                                        continue; // Salta el break y vuelve a preguntar
+                                    }
+                                    break;
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Entrada inválida. Debe ser un número entero.");
+                                }
+                            }
+                            if (!continuarCreacion) break;
+                            while (true) {
+                                System.out.println("¿Tiene alas? (si/no) (o escribe 'cancelar' para cancelar):");
+                                alas = sc.nextLine();
+                                if (alas.equalsIgnoreCase("cancelar")) {
+                                    System.out.println("Creación de vampiro cancelada.");
+                                    continuarCreacion = false;
+                                    break;
+                                }
+                                if (alas.equalsIgnoreCase("si") || alas.equalsIgnoreCase("no")) {
+                                    break;
+                                } else {
+                                    System.out.println("Entrada inválida. Por favor ingresa 'si' o 'no'.");
+                                }
+                            }
+
+                            if (!continuarCreacion) break;
+
                             Crear_vampiro creador = new Crear_vampiro(nombre, fuerza, velocidad, hambre, alas);
                             Vampiro nuevoVampiro = creador.obtenerVampiroCreado();
+
                             if (nuevoVampiro != null) {
                                 vampiros.add(nuevoVampiro);
                                 sinClan.admitirVampiro(nuevoVampiro);
@@ -108,6 +220,7 @@ public class Main {
                                 System.out.println("Error al crear el vampiro. Verifica los valores ingresados.");
                             }
                             break;
+
                         case 3:
                             // Listar vampiros
                             for(Clan clan:clanes){
@@ -324,7 +437,7 @@ public class Main {
                             }
                             // Si el clan ya existe, no se puede crear
                             if (existeClan) {
-                                System.out.println("Ya existe un clan con ese nombre:");
+                                System.out.println("Ya existe un clan con ese nombre");
                                 break;
                             }
                             System.out.println("Ingresa los años de antiguedad de ese clan:");
@@ -342,8 +455,11 @@ public class Main {
                                 System.out.println("No se puede eliminar \"Sin clan\"");
                                 break;
                             }
+                            if (nombreClanAEliminar.equals("Volturi")) {
+                                System.out.println("No se puede eliminar \"Volturi\"");
+                                break;
+                            }
                             Clan clanAEliminar = null;
-
                             // Buscar el clan que se desea eliminar
                             for (Clan clan : clanes) {
                                 if (clan.getNombreClan().equalsIgnoreCase(nombreClanAEliminar)) {
