@@ -142,7 +142,7 @@ public class Main {
                             System.out.println("El vampiro indicado no existe");
                             break;
                         } else if(!vampiroExistente.getClan().equals("Sin clan")){
-                            System.out.println("El vampiro indicado ya se encuentra en otro clan");
+                            System.out.println("El vampiro indicado ya se encuentra en un clan");
                         } else {
                             clanExistente.admitirVampiro(vampiroExistente);
                             vampiroExistente.Clan = clanExistente.getNombreClan();
