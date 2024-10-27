@@ -142,7 +142,7 @@ public class Main {
                             System.out.println("El vampiro indicado no existe");
                             break;
                         } else if(!vampiroExistente.getClan().equals("Sin clan")){
-                            System.out.println("El vampiro indicado ya se encuentra en un clan");
+                            System.out.println("El vampiro indicado ya se encuentra en otro clan");
                         } else {
                             clanExistente.admitirVampiro(vampiroExistente);
                             vampiroExistente.Clan = clanExistente.getNombreClan();
@@ -195,10 +195,46 @@ public class Main {
                         sinClan.admitirVampiro(vampiroExistente2);
                         break;
                     
-                    case 6:
-                        System.out.println("Opcion 6");
-                        // Código para comer
+                        case 6:
+                        System.out.println("Opción 6 - Comer");
+                    
+                        // Recorremos la lista de vampiros
+                        int index=0;
+                        for (int i = 0; i < vampiros.size(); i++) {
+                            Vampiro vamp = vampiros.get(i);
+                            System.out.println((i + 1) + ". Vampiro: " + vamp.getNombre() + " (Hambre actual: " + vamp.getHambre() + ")");
+                            index=i;
+                        }
+                    
+                        // Permitir al usuario elegir un vampiro que va a comer
+                        System.out.println("Seleccione el número del vampiro que va a comer:");
+                        int vampiroSeleccionado = sc.nextInt() - 1;  // Restamos 1 para que coincida con el índice de la lista
+                        sc.nextLine();  // Consumir el salto de línea después del número
+                        //boolean comerAnimal = false;
+                        if (vampiroSeleccionado >= 0 && vampiroSeleccionado < vampiros.size()) {
+                            Vampiro vampiroQueCome = vampiros.get(vampiroSeleccionado);
+                            System.out.println("¿El vampiro come solamente animales? Ingrese *si* si es asi: (recuerde que los recien_convertidos solo comen personas) ");
+                            String come=sc.nextLine();
+                            if (come.equalsIgnoreCase("si") && !(vampiros.get(index).fuerza<=20)){
+                                //vampiroQueCome.comerAnimal();
+                            }
+                            // Aquí puedes implementar la lógica para que el vampiro coma
+                            // Ejemplo: disminuir el hambre
+                            System.out.println(vampiroQueCome.getNombre() + " va a comer.");
+                    
+                            // Puedes hacer que su hambre se reduzca de forma aleatoria o en una cantidad fija
+                            int hambreAntes = vampiroQueCome.getHambre();
+                            vampiroQueCome.comer();  // Asumiendo que tienes un método para que el vampiro coma
+                    
+                            // Mostramos el hambre antes y después de comer
+                            System.out.println("Hambre de " + vampiroQueCome.getNombre() + " antes de comer: " + hambreAntes);
+                            System.out.println("Hambre de " + vampiroQueCome.getNombre() + " después de comer: " + vampiroQueCome.getHambre());
+                        } else {
+                            System.out.println("Selección inválida.");
+                        }
+                    
                         break;
+                    
                     case 7:
                     System.out.println("Opción 7 - Vampiro más apto (fuerza + velocidad): ");
                 
@@ -221,7 +257,7 @@ public class Main {
                     System.out.println("Guardando los vampiros y saliendo del programa...");
                 
                     try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV))) {
-                        bw.write("Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas,a \n");
+                        bw.write("Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas,Antiguedad del clan \n");
                 
                         for (Vampiro vamp : vampiros) {
                             bw.write(vamp.nombre + "," 
