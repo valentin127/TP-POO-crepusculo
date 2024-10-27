@@ -35,6 +35,9 @@ public abstract class Vampiro{
     public int getVelocidad(){
         return velocidad;
     }
+    public String getClan(){
+        return Clan;
+    }
 
 
     @Override
