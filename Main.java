@@ -141,8 +141,12 @@ public class Main {
                         if (vampiroExistente == null) {
                             System.out.println("El vampiro indicado no existe");
                             break;
+                        } else if(!vampiroExistente.getClan().equals("Sin clan")){
+                            System.out.println("El vampiro indicado ya se encuentra en otro clan");
                         } else {
                             clanExistente.admitirVampiro(vampiroExistente);
+                            vampiroExistente.Clan = clanExistente.getNombreClan();
+                            sinClan.expulsarVampiro(vampiroExistente);
                         }
 
                         break;
@@ -166,6 +170,10 @@ public class Main {
                             System.out.println("El clan indicado no existe");
                             break;
                         }
+                        if (clanExistente2.getNombreClan().equals("Sin clan")) {
+                            System.out.println("No se puede expulsar si no tiene clan");
+                            break;
+                        }
                         
                         
                         System.out.println("Ingrese el nombre del vampiro: ");
@@ -183,6 +191,8 @@ public class Main {
                             break;
                         }
                         clanExistente2.expulsarVampiro(vampiroExistente2);
+                        vampiroExistente2.Clan = "Sin clan";
+                        sinClan.admitirVampiro(vampiroExistente2);
                         break;
                     
                     case 6:
