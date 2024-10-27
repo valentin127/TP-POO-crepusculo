@@ -23,7 +23,11 @@ public class RecienConvertido extends Vampiro {
     }*/
     @Override
     public void comer(){
-
+        Random random = new Random();
+        hambre = hambre - random.nextInt(99)+1;
+            if (hambre<0) {
+                hambre = 1;
+            }
     }
 
     @Override

@@ -20,6 +20,9 @@ public abstract class Vampiro{
     public String getNombre() {
         return nombre;
     }
+    public int getHambre(){
+        return hambre;
+    }
     public String getColorOjos(){
         return ColorOjos;
     }
