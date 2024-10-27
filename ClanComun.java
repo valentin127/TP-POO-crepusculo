@@ -4,4 +4,9 @@ public class ClanComun extends Clan{
         super(nombreClan);
         this.antiguedadDelClan=adc;
     }
+
+    public int getAntiguedadDelClan() {
+        return antiguedadDelClan;
+    }
+    
 }

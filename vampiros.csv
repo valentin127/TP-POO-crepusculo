@@ -1,6 +1,6 @@
-Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas,a
-Edward,80,60,20,naraja,Sin clan,si,0
-Bella,60,70,50,naraja,Cullen,si,1
-Aro,40,80,30,amarillo,Sin clan,no,0
-Jane,50,100,40,amarillo,Sin clan,no,1
-peter,60,40,10,naraja,Sin clan,no,1
+Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas,a 
+Edward,80,60,20,naraja,Sin clan,si,60
+Bella,60,70,50,naraja,Cullen,si,70
+Aro,40,80,30,amarillo,Sin clan,no,80
+Jane,50,100,40,amarillo,Sin clan,no,100
+peter,60,40,10,naraja,Sin clan,no,40
