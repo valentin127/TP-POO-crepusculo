@@ -69,7 +69,7 @@ public class Main {
             boolean ciclo = true;
 
             while (ciclo) {
-                System.out.println("Sistema gestor de crepusculo: \n1. Mostrar clanes\n2. Crear Vampiro\n3. Listar vampiros\n4. Admitir vampiro a un clan\n5. Expulsar vampiro de un clan\n6. Comer\n7. Obtener vampiro más apto\n8. Usar habilidad especial de un vampiro\n9. Salir");
+                System.out.println("Sistema gestor de crepusculo: \n1. Mostrar clanes\n2. Crear Vampiro\n3. Listar vampiros\n4. Admitir vampiro a un clan\n5. Expulsar vampiro de un clan\n6. Comer\n7. Obtener vampiro más apto\n8. Usar habilidad especial de un vampiro\n9. Crear nuevo clan\n10. Borrar clan\11. Salir");
                 int opcion = sc.nextInt();
                 sc.nextLine();  
                 switch (opcion) {
