@@ -28,6 +28,11 @@ public class Volturi extends Clan{
         }
     }
 
+    @Override
+    public int getEdad(){
+        return 100;
+    }
+
     // Nuevo método único de Volturi
     public void mostrarInfluenciaPolitica() {
         System.out.println("Influencia política de los Volturi: " + influenciaPolitica);
