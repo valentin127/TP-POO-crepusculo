@@ -27,7 +27,7 @@ public class Main {
                 int fuerza = Integer.parseInt(datos[1]);
                 int velocidad = Integer.parseInt(datos[2]);
                 int hambre = Integer.parseInt(datos[3]);
-                String ColorOjos = datos[4];
+                //String ColorOjos = datos[4];
                 String clan = datos[5];
                 String alas = datos[6].equalsIgnoreCase("si") ? "si" : "no";  // Convertir el texto a una respuesta booleana
                 int años = Integer.parseInt(datos[7]);
@@ -40,7 +40,18 @@ public class Main {
                 Vampiro vampiro = creador.obtenerVampiroCreado();
                 if (vampiro != null) {
                     vampiros.add(vampiro);  // Añadir vampiro a la lista
-                    clanes.add(cl);  // Añadir clan al conjunto de clanes
+                    boolean existe = false;
+                    for (Clan existente : clanes) {
+                        if (existente.getNombreClan().equalsIgnoreCase(cl.getNombreClan())) {  // Comparar nombres de clanes (ignorar mayúsculas)
+                            existe = true;
+                            break;
+                        }
+                    }
+
+                    // Si el clan no existe, añadirlo a la lista de clanes
+                    if (!existe) {
+                        clanes.add(cl);
+                    }
                 }
             }
 
@@ -49,7 +60,7 @@ public class Main {
             boolean ciclo = true;
 
             while (ciclo) {
-                System.out.println("1. Mostrar clanes\n2. Crear Vampiro\n3. Listar vampiros\n4. Admitir vampiro a un clan\n5. Expulsar vampiro de un clan\n6. Comer\n7. Obtener vampiro más apto\n8. Salir");
+                System.out.println("Sistema gestor de crepusculo: \n1. Mostrar clanes\n2. Crear Vampiro\n3. Listar vampiros\n4. Admitir vampiro a un clan\n5. Expulsar vampiro de un clan\n6. Comer\n7. Obtener vampiro más apto\n8. Salir");
                 int opcion = sc.nextInt();
                 sc.nextLine();  // Consumir el salto de línea después del int
                 switch (opcion) {
@@ -57,7 +68,7 @@ public class Main {
                         // Mostrar clanes
                         System.out.println("Clanes:");
                         for (Clan clan : clanes) {
-                            System.out.println(clan);
+                            System.out.println("- "+clan);
                         }
                         break;
                     case 2:
@@ -89,9 +100,7 @@ public class Main {
                         break;
                     case 3:
                         // Listar vampiros
-                        System.out.println("Vampiros:");
                         for(Clan clan:clanes){
-                            System.out.println("Vampiros del clan "+clan+":");
                             clan.listarVampiros();
                         }
                         break;
@@ -127,9 +136,10 @@ public class Main {
                         if (vampiroExistente == null) {
                             System.out.println("El vampiro indicado no existe");
                             break;
+                        } else {
+                            clanExistente.admitirVampiro(vampiroExistente);
                         }
 
-                        clanExistente.admitirVampiro(vampiroExistente);
                         break;
 
                     case 5:
@@ -184,7 +194,7 @@ public class Main {
                     // Guardar los cambios en el archivo CSV
                     try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV))) {
                         // Escribir la cabecera
-                        bw.write("Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas\n");
+                        bw.write("Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas,a \n");
                 
                         // Escribir cada vampiro en el archivo CSV
                         for (Vampiro vamp : vampiros) {
@@ -195,7 +205,8 @@ public class Main {
                                     + vamp.hambre + "," 
                                     + vamp.ColorOjos + "," 
                                     + vamp.Clan + "," 
-                                    + (vamp.alas.equalsIgnoreCase("si") ? "si" : "no") + "\n");
+                                    + (vamp.alas.equalsIgnoreCase("si") ? "si" : "no") + ","
+                                    + vamp.velocidad +"\n" );
                         }
                     } catch (IOException e) {
                         System.out.println("Error al guardar los vampiros en el archivo CSV: " + e.getMessage());
