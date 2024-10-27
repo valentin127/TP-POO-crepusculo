@@ -64,7 +64,7 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
     }
 
     
-    public int getCoondicon() {
+    public int getCondicon() {
         return condicion;
     }
 

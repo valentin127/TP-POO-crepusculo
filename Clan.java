@@ -10,10 +10,6 @@ public abstract class Clan {
         this.nombreClan = nombreClan;
         this.vampiros = new ArrayList<>();
     }
-
-    public void IniciarClanes(Vampiro vampiro){
-        vampiros.add(vampiro);
-    }
     
     public void admitirVampiro(Vampiro vampiro) {
         vampiros.add(vampiro);
