@@ -69,7 +69,7 @@ public class Main {
             boolean ciclo = true;
 
             while (ciclo) {
-                System.out.println("Sistema gestor de crepusculo: \n1. Mostrar clanes\n2. Crear Vampiro\n3. Listar vampiros\n4. Admitir vampiro a un clan\n5. Expulsar vampiro de un clan\n6. Comer\n7. Obtener vampiro más apto\n8. Salir");
+                System.out.println("\nSistema gestor de crepusculo: \n1. Mostrar clanes\n2. Crear Vampiro\n3. Listar vampiros\n4. Admitir vampiro a un clan\n5. Expulsar vampiro de un clan\n6. Comer\n7. Obtener vampiro más apto\n8. Salir");
                 int opcion = sc.nextInt();
                 sc.nextLine();  
                 switch (opcion) {
@@ -110,9 +110,8 @@ public class Main {
                         }
                         break;
                     case 4:
-                        System.out.println("Opcion 4");
+                        System.out.println("Opción 4 - Admitir vampiro a un clan");
                         // Código para admitir vampiro a clan
-
                         System.out.println("Ingrese el nombre del clan: ");
                         String nombreClan = sc.nextLine();
 
@@ -125,6 +124,10 @@ public class Main {
                         }
                         if (clanExistente == null) {
                             System.out.println("El clan indicado no existe");
+                            break;
+                        }
+                        if (clanExistente.getNombreClan().equals("Sin clan")) {
+                            System.out.println("No se puede admitir a \"Sin clan\", utilice la funcion de expulsar");
                             break;
                         }
 
@@ -152,10 +155,9 @@ public class Main {
                         break;
 
                     case 5:
-                        System.out.println("Opción 5 - Expulsar vampiro de su clan\n");
+                        System.out.println("Opción 5 - Expulsar vampiro de un clan");
                         // Código para expulsar vampiro de su clan
                         // Usamos un 2 en las variables porque java da un error raro con la variable definida en otro case
-                        
                         System.out.println("Ingrese el nombre del clan: ");
                         String nombreClan2 = sc.nextLine();
 
@@ -197,7 +199,6 @@ public class Main {
                     
                         case 6:
                         System.out.println("Opción 6 - Comer");
-                    
                         // Recorremos la lista de vampiros
                         int index=0;
                         for (int i = 0; i < vampiros.size(); i++) {

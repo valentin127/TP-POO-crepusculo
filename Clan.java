@@ -20,14 +20,20 @@ public abstract class Clan {
 
     public void expulsarVampiro(Vampiro vampiro) {
         if (vampiros.remove(vampiro)) {
-            System.out.println(vampiro.getNombre() + " ha sido expulsado del clan " + nombreClan + ".");
+            if (!nombreClan.equals("Sin clan")) {
+                System.out.println(vampiro.getNombre() + " ha sido expulsado del clan " + nombreClan + ".");
+            }
         } else {
             System.out.println(vampiro.getNombre() + " no pertenece al clan " + nombreClan + ".");
         }
     }
 
     public void listarVampiros() {
-        System.out.println("Vampiros en el clan " + nombreClan + ":");
+        if (nombreClan.equals("Sin clan")) {
+            System.out.println("Vampiros sin clan:");
+        } else {
+            System.out.println("Vampiros en el clan " + nombreClan + ":");
+        }
         for (int i = 0; i < vampiros.size(); i++) {
             Vampiro vampiro = vampiros.get(i);
             System.out.println("- " + vampiro);
