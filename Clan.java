@@ -15,8 +15,6 @@ public abstract class Clan {
         vampiros.add(vampiro);
         if (!nombreClan.equals("Sin clan")) {
             System.out.println(vampiro.getNombre() + " ha sido admitido en el clan " + nombreClan + ".");
-        } else {
-            System.out.println(vampiro.getNombre() + " no ha sido admitido en ningun clan");
         }
     }
 
@@ -48,6 +46,10 @@ public abstract class Clan {
 
     public int getEdad(){
         return edad;
+    }
+
+    public List<Vampiro> getVampiros() {
+        return vampiros;
     }
 
     @Override

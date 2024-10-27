@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -312,10 +313,8 @@ public class Main {
                             // Crear un nuevo clan
                             System.out.println("Ingresa el nombre del nuevo clan comun:");
                             String nombreClanNuevo = sc.nextLine();
-                            System.out.println("Ingresa los años de antiguedad de ese clan:");
-                            int años = sc.nextInt();
+                            
                             // Verifica si el clan ya existe
-                            Clan clanNuevo = null;
                             boolean existeClan = false;
                             for (Clan existente : clanes) {
                                 if (existente.getNombreClan().equalsIgnoreCase(nombreClanNuevo)) {  // Comparar nombres de clanes (ignorar mayúsculas)
@@ -327,10 +326,45 @@ public class Main {
                             if (existeClan) {
                                 System.out.println("Ya existe un clan con ese nombre:");
                                 break;
+                            }
+                            System.out.println("Ingresa los años de antiguedad de ese clan:");
+                            int años = sc.nextInt();
+                            // Si el clan no existe, añade un nuevo clan
+                            ClanComun nuevoClan = new ClanComun(nombreClanNuevo, años);
+                            clanes.add(nuevoClan);
+                            break;
+                        
+                        case 10:
+                            // Eliminar un clan existente
+                            System.out.println("Ingresa el nombre del clan a eliminar:");
+                            String nombreClanAEliminar = sc.nextLine();
+                            if (nombreClanAEliminar.equals("Sin clan")) {
+                                System.out.println("No se puede eliminar \"Sin clan\"");
+                                break;
+                            }
+                            Clan clanAEliminar = null;
+
+                            // Buscar el clan que se desea eliminar
+                            for (Clan clan : clanes) {
+                                if (clan.getNombreClan().equalsIgnoreCase(nombreClanAEliminar)) {
+                                    clanAEliminar = clan;
+                                    break;
+                                }
+                            }
+
+                            if (clanAEliminar != null) {
+                                // Mover los vampiros al clan "Sin clan"
+                                List<Vampiro> vampirosAExpulsar = clanAEliminar.getVampiros();
+                                for (Vampiro vampiro : vampirosAExpulsar) {
+                                    sinClan.admitirVampiro(vampiro);
+                                    vampiro.Clan= "Sin clan";
+                                }
+
+                                // Eliminar el clan de la lista de clanes
+                                clanes.remove(clanAEliminar);
+                                System.out.println("El clan '" + clanAEliminar + "' ha sido eliminado");
                             } else {
-                                // Si el clan no existe, añade un nuevo clan
-                                ClanComun nuevoClan = new ClanComun(nombreClanNuevo, años);
-                                clanes.add(nuevoClan);
+                                System.out.println("No se encontró un clan con el nombre '" + clanAEliminar + "'.");
                             }
                             break;
 
