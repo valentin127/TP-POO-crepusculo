@@ -60,7 +60,7 @@ public class Main {
                             // Si el clan no existe, añade un nuevo clan y admite al vampiro
                             ClanComun nuevoClan = new ClanComun(clanNombre, años);
                             clanes.add(nuevoClan);
-                            nuevoClan.IniciarClanes(vampiro);
+                            nuevoClan.IniciarClanes(vampiro); 
                         }
                     }
                 }
@@ -147,8 +147,151 @@ public class Main {
                             }
 
                             break;
+                            case 5:
+                        System.out.println("Opción 5 - Expulsar vampiro de su clan\n");
+                        // Código para expulsar vampiro de su clan
+                        // Usamos un 2 en las variables porque java da un error raro con la variable definida en otro case
+                        
+                        System.out.println("Ingrese el nombre del clan: ");
+                        String nombreClan2 = sc.nextLine();
 
-                        // Continuación del código para otras opciones del menú
+                        Clan clanExistente2 = null;
+                        for (Clan c : clanes) {
+                            if (c.getNombreClan().equals(nombreClan2)) {
+                                clanExistente2 = c;
+                                break;
+                            }
+                        }
+                        if (clanExistente2 == null) {
+                            System.out.println("El clan indicado no existe");
+                            break;
+                        }
+                        
+                        
+                        System.out.println("Ingrese el nombre del vampiro: ");
+                        String nombreVampiro2 = sc.nextLine();
+
+                        Vampiro vampiroExistente2 = null;
+                        for (Vampiro v : vampiros) {
+                            if (v.getNombre().equals(nombreVampiro2)) {
+                                vampiroExistente2 = v;
+                                break;
+                            }
+                        }
+                        if (vampiroExistente2 == null) {
+                            System.out.println("El vampiro indicado no existe");
+                            break;
+                        }
+                        clanExistente2.expulsarVampiro(vampiroExistente2);
+                        break;
+                            case 6:
+                            System.out.println("Opción 6 - Comer");
+                            for (int i = 0; i < vampiros.size(); i++) {
+                                Vampiro vamp = vampiros.get(i);
+                                System.out.println((i + 1) + ". Vampiro: " + vamp.getNombre() + " (Hambre actual: " + vamp.getHambre() + ")");
+                            }
+                            System.out.println("Seleccione el número del vampiro que va a comer:");
+                            int vampiroSeleccionado = sc.nextInt() - 1;
+                            sc.nextLine();
+
+                            if (vampiroSeleccionado >= 0 && vampiroSeleccionado < vampiros.size()) {
+                                Vampiro vampiroQueCome = vampiros.get(vampiroSeleccionado);
+                                if (vampiroQueCome instanceof RecienConvertido) {
+                                    System.out.println(vampiroQueCome.getNombre() + " es un vampiro tipo RecienConvertido y solo puede comer personas.");
+                                    vampiroQueCome.comer(); 
+                                } 
+                                else if (vampiroQueCome instanceof Maduro) {
+                                    System.out.println(vampiroQueCome.getNombre() + " es un vampiro tipo  Maduro, puede comer tanto animales como personas.");
+
+                                    // Verificar si puede comer animales usando la interfaz
+                                    if (vampiroQueCome instanceof ComedorDeAnimales) {
+                                        ComedorDeAnimales vampiroMaduro = (ComedorDeAnimales) vampiroQueCome;  // Hacemos el casting
+                                        System.out.println("¿El vampiro desea comer un animal? (si/no):");
+                                        String respuesta = sc.nextLine();
+                                        if (respuesta.equalsIgnoreCase("si")) {
+                                            vampiroMaduro.comerAnimal();  // Llamamos al método de la interfaz
+                                        } 
+                                        else {
+                                            vampiroQueCome.comer();  // Método general para comer personas
+                                        }
+                                    }
+                                } 
+                                else if (vampiroQueCome instanceof Adulto) {
+                                    System.out.println(vampiroQueCome.getNombre() + " es un vampiro tipo Adulto, puede comer lo que desee.");
+
+                                    // Verificar si puede comer animales usando la interfaz
+                                    if (vampiroQueCome instanceof ComedorDeAnimales) {
+                                        ComedorDeAnimales vampiroAdulto = (ComedorDeAnimales) vampiroQueCome;  //  casting de clases para el correcto funcinar del metodo
+                                        System.out.println("¿El vampiro desea comer un animal? (si/no):");
+                                        String eleccion = sc.nextLine();
+                                        if (eleccion.equalsIgnoreCase("si")) {
+                                            vampiroAdulto.comerAnimal();  
+                                        } 
+                                        else {
+                                            vampiroQueCome.comer();  
+                                        }
+                                    }
+                                }
+
+                                if (vampiroQueCome.hambre > 1) {
+                                    System.out.println("Hambre de " + vampiroQueCome.getNombre() + " después de comer: " + vampiroQueCome.getHambre());
+                                }
+                                
+                            } 
+                            else {
+                                System.out.println("Selección inválida.");
+                            }
+
+                            break;
+
+                    
+                    case 7:
+                    System.out.println("Opción 7 - Vampiro más apto (mayor fuerza y velocidad pero menor hambre): ");
+                
+                    Vampiro vampiroMasApto = null;
+                    int mayorAptitud = 0; 
+                    for (Vampiro vamp : vampiros) {
+                        int aptitudActual = vamp.fuerza + vamp.velocidad - vamp.hambre;  // Calcular la suma de fuerza y velocidad
+                        if (aptitudActual > mayorAptitud) {
+                            mayorAptitud = aptitudActual;  // Actualizar la mayor aptitud
+                            vampiroMasApto = vamp;  // Guardar al vampiro más apto hasta ahora
+                        }
+                    }
+                    if (vampiroMasApto != null) {
+                        System.out.println("El vampiro más apto es: " + vampiroMasApto.nombre + " con fuerza " + vampiroMasApto.fuerza + " y velocidad " + vampiroMasApto.velocidad +  " , posee un hambre de: "+ vampiroMasApto.hambre);
+                    } else {
+                        System.out.println("No hay vampiros en la lista.");
+                    }
+                    break;
+                    case 8:
+                    for (int i = 0; i < vampiros.size(); i++) {
+                        Vampiro vamp = vampiros.get(i);
+                        System.out.println((i + 1) + ". Vampiro: " + vamp.getNombre() + " (Hambre actual: " + vamp.getHambre() + ", por si llega a fallar su activacion comiendo el vampiro se fortalece.)");
+                    }
+                    System.out.println("Seleccione el número del vampiro que va a usar su habilidad:");
+                    int vampiroSeleccionado1 = sc.nextInt() - 1;
+                    sc.nextLine();
+
+                    if (vampiroSeleccionado1 >= 0 && vampiroSeleccionado1 < vampiros.size()) {
+                        Vampiro vampiroQueaactiva = vampiros.get(vampiroSeleccionado1);
+                        if (vampiroQueaactiva instanceof RecienConvertido) {
+                            System.out.println(vampiroQueaactiva.getNombre() + " es un vampiro tipo RecienConvertido y intenta usar su habilidad.");
+                            vampiroQueaactiva.habilidadEspecial();
+                             
+                        } 
+                        else if (vampiroQueaactiva instanceof Maduro) {
+                            System.out.println(vampiroQueaactiva.getNombre() + " es un vampiro tipo  Maduro, y intenta usar su habilidad..");
+                            vampiroQueaactiva.habilidadEspecial();
+                        } 
+                        else if (vampiroQueaactiva instanceof Adulto) {
+                            System.out.println(vampiroQueaactiva.getNombre() + " es un vampiro tipo Adulto, y intenta usar su habilidad..");
+                            vampiroQueaactiva.habilidadEspecial();
+                            }
+                        }
+                    else {
+                        System.out.println("Selección inválida.");
+                    }
+                    break;
 
                         case 11:
                             System.out.println("Guardando los vampiros y saliendo del programa...");
