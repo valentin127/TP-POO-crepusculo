@@ -11,7 +11,7 @@ public class RecienConvertido extends Vampiro {
         Random random = new Random();
         hambre = hambre - random.nextInt(99)+1;
         inestabilidad = 10;
-            if (hambre<=0 ) {
+            if (hambre <= 1) {
                 hambre = 1;
             }
         }

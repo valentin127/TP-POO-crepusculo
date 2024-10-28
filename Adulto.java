@@ -11,7 +11,7 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
             Random random = new Random();
             hambre = hambre - random.nextInt(99)+1;
             condicion = 80;
-            if (hambre<0) {
+            if (hambre < 1) {
                 hambre = 1;
             }
         }
@@ -43,7 +43,7 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
             Animal animal = new Animal();
             hambre = hambre - animal.getHambre();
             condicion = 80;
-            if (hambre < 0) {
+            if (hambre < 1) {
                 hambre = 1;
             }
         } else {

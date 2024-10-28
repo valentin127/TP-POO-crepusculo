@@ -468,7 +468,7 @@ public class Main {
                             // Ingreso de años de antigüedad con validación y opción de reintento
                             int años = -1;
                             while (true) {
-                                System.out.println("e los años de antiguedad de ese clan:");
+                                System.out.println("Ingrese los años de antiguedad de ese clan:");
                                 String input = sc.nextLine();
                             
                                 if (input.equalsIgnoreCase("cancelar")) {
