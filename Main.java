@@ -82,7 +82,7 @@ public class Main {
                             boolean continuarCreacion = true;
 
                             while (true) {
-                                System.out.println("Ingresa el nombre del vampiro (o escribe 'cancelar' para cancelar):");
+                                System.out.println("Ingrese el nombre del vampiro (o escribe 'cancelar' para cancelar):");
                                 nombre = sc.nextLine();
                             
                                 if (nombre.equalsIgnoreCase("cancelar")) {
@@ -101,7 +101,7 @@ public class Main {
                                 }
                             
                                 if (vampiroExiste) {
-                                    System.out.println("Ya existe un vampiro con el nombre " + nombre + ". Por favor, ingresa un nombre diferente.");
+                                    System.out.println("Ya existe un vampiro con el nombre " + nombre + ". Por favor, ingrese un nombre diferente.");
                                 } else {
                                     break;
                                 }
@@ -109,7 +109,7 @@ public class Main {
 
                             if (!continuarCreacion) break;
                             while (true) {
-                                System.out.println("Ingresa la fuerza del vampiro (entre 1 y 100) (o escribe 'cancelar' para cancelar):");
+                                System.out.println("Ingrese la fuerza del vampiro (entre 1 y 100) (o escribe 'cancelar' para cancelar):");
                                 String input = sc.nextLine();
                                 
                                 if (input.equalsIgnoreCase("cancelar")) {
@@ -132,7 +132,7 @@ public class Main {
 
                             if (!continuarCreacion) break;
                             while (true) {
-                                System.out.println("Ingresa la velocidad del vampiro (entre 1 y 100) (o escribe 'cancelar' para cancelar):");
+                                System.out.println("Ingrese la velocidad del vampiro (entre 1 y 100) (o escribe 'cancelar' para cancelar):");
                                 String input = sc.nextLine();
                                 
                                 if (input.equalsIgnoreCase("cancelar")) {
@@ -155,7 +155,7 @@ public class Main {
 
                             if (!continuarCreacion) break;
                             while (true) {
-                                System.out.println("Ingresa el hambre del vampiro (entre 1 y 100) (o escribe 'cancelar' para cancelar):");
+                                System.out.println("Ingrese el hambre del vampiro (entre 1 y 100) (o escribe 'cancelar' para cancelar):");
                                 String input = sc.nextLine();
                                 
                                 if (input.equalsIgnoreCase("cancelar")) {
@@ -187,7 +187,7 @@ public class Main {
                                 if (alas.equalsIgnoreCase("si") || alas.equalsIgnoreCase("no")) {
                                     break;
                                 } else {
-                                    System.out.println("Entrada inválida. Por favor ingresa 'si' o 'no'.");
+                                    System.out.println("Entrada inválida. Por favor ingrese 'si' o 'no'.");
                                 }
                             }
 
@@ -201,7 +201,7 @@ public class Main {
                                 sinClan.admitirVampiro(nuevoVampiro);
                                 System.out.println("Vampiro creado y añadido a la lista.");
                             } else {
-                                System.out.println("Error al crear el vampiro. Verifica los valores ingresados.");
+                                System.out.println("Error al crear el vampiro. Verifique los valores ingresados.");
                             }
                             break;
 
@@ -215,7 +215,7 @@ public class Main {
                         case 4:
                             System.out.println("Opcion 4 - Admitir vampiro a un clan");
                             // Código para admitir vampiro a clan
-                            System.out.println("Ingresa el nombre del clan: ");
+                            System.out.println("Ingrese el nombre del clan: ");
                             String nombreClan = sc.nextLine();
 
                             Clan clanExistente = null;
@@ -234,7 +234,7 @@ public class Main {
                                 break;
                             }
 
-                            System.out.println("Ingresa el nombre del vampiro: ");
+                            System.out.println("Ingrese el nombre del vampiro: ");
                             String nombreVampiro = sc.nextLine();
 
                             Vampiro vampiroExistente = null;
@@ -258,7 +258,7 @@ public class Main {
                             System.out.println("Opción 5 - Expulsar vampiro de un clan\n");
                             // Código para expulsar vampiro de su clan
                             // Usamos un 2 en las variables porque java da un error raro con la variable definida en otro case
-                            System.out.println("Ingresa el nombre del clan: ");
+                            System.out.println("Ingrese el nombre del clan: ");
                             String nombreClan2 = sc.nextLine();
 
                             Clan clanExistente2 = null;
@@ -277,7 +277,7 @@ public class Main {
                                 break;
                             }
                         
-                            System.out.println("Ingresa el nombre del vampiro: ");
+                            System.out.println("Ingrese el nombre del vampiro: ");
                             String nombreVampiro2 = sc.nextLine();
 
                             Vampiro vampiroExistente2 = null;
@@ -446,7 +446,7 @@ public class Main {
 
                         case 9:
                             // Crear un nuevo clan
-                            System.out.println("Ingresa el nombre del nuevo clan comun:");
+                            System.out.println("Ingrese el nombre del nuevo clan comun:");
                             String nombreClanNuevo = sc.nextLine();
                             
                             // Verifica si el clan ya existe
@@ -467,7 +467,7 @@ public class Main {
                             // Ingreso de años de antigüedad con validación y opción de reintento
                             int años = -1;
                             while (true) {
-                                System.out.println("Ingresa los años de antiguedad de ese clan:");
+                                System.out.println("e los años de antiguedad de ese clan:");
                                 String input = sc.nextLine();
                             
                                 if (input.equalsIgnoreCase("cancelar")) {
@@ -495,7 +495,7 @@ public class Main {
                         
                         case 10:
                             // Eliminar un clan existente
-                            System.out.println("Ingresa el nombre del clan a eliminar:");
+                            System.out.println("Ingrese el nombre del clan a eliminar:");
                             String nombreClanAEliminar = sc.nextLine();
                             if (nombreClanAEliminar.equalsIgnoreCase("Sin clan")) {
                                 System.out.println("No se puede eliminar \"Sin clan\"");
@@ -557,7 +557,7 @@ public class Main {
                             ciclo = false;
                             break;
                         default:
-                            System.out.println("Opción no válida");
+                            System.out.println("Opción inválida. Por favor, elija un número de la lista.");
                     }
                 }
             } catch (IOException e) {
