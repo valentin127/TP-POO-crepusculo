@@ -8,12 +8,15 @@ public class RecienConvertido extends Vampiro {
     @Override
     public void comer() {
         if (hambre>1) {
-        Random random = new Random();
-        hambre = hambre - random.nextInt(99)+1;
-        inestabilidad = 10;
-            if (hambre <= 1) {
+            int hambreAnterior = hambre;
+            Random random = new Random();
+            hambre = hambre - random.nextInt(99)+1;
+            inestabilidad = 10;
+            if (hambre < 1) {
                 hambre = 1;
             }
+            System.out.println(nombre + " está comiendo.");
+            System.out.println("Hambre: " + hambreAnterior + " --> " + hambre);
         }
         else {
             System.out.println(nombre + " no tiene hambre en este momento.");

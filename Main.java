@@ -369,9 +369,6 @@ public class Main {
                                 }
                             }
                             
-                            if (vampiroQueCome.getHambre() > 1) {
-                                System.out.println("Hambre de " + vampiroQueCome.getNombre() + " después de comer: " + vampiroQueCome.getHambre());
-                            }
                             break;
                     
                         case 7:

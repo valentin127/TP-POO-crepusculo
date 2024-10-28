@@ -8,12 +8,15 @@ public class Maduro extends Vampiro implements ComedorDeAnimales {
     @Override
     public void comer() {
         if (hambre>1) {
-        Random random = new Random();
-        hambre = hambre - random.nextInt(99)+1;
-        autocontrol = 90;
+            int hambreAnterior = hambre;
+            Random random = new Random();
+            hambre = hambre - random.nextInt(99)+1;
+            autocontrol = 90;
             if (hambre < 1) {
                 hambre = 1;
             }
+            System.out.println(nombre + " está comiendo.");
+            System.out.println("Hambre: " + hambreAnterior + " --> " + hambre);
         }
         else {
             System.out.println(nombre + " no tiene hambre en este momento.");
@@ -37,12 +40,15 @@ public class Maduro extends Vampiro implements ComedorDeAnimales {
     @Override
     public void comerAnimal() {
         if (hambre > 1) {
+            int hambreAnterior = hambre;
             Animal animal = new Animal();
             hambre = hambre - animal.getHambre();
             autocontrol =60;
             if (hambre < 1) {
                 hambre = 1;
             }
+            System.out.println(nombre + " está comiendo un animal.");
+            System.out.println("Hambre: " + hambreAnterior + " --> " + hambre);
         } else {
             System.out.println(nombre + " no tiene hambre en este momento.");
         }
