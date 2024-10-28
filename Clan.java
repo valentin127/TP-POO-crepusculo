@@ -12,6 +12,7 @@ public abstract class Clan {
     }
     public void admitirVampiro(Vampiro vampiro) {
         vampiros.add(vampiro);
+        vampiro.Clan = nombreClan;
         if (!nombreClan.equals("Sin clan")) {
             System.out.println(vampiro.getNombre() + " ha sido admitido en el clan " + nombreClan + ".");
         }

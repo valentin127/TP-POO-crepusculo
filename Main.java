@@ -251,7 +251,6 @@ public class Main {
                                 System.out.println("El vampiro indicado ya se encuentra en un clan");
                             } else {
                                 clanExistente.admitirVampiro(vampiroExistente);
-                                vampiroExistente.Clan = clanExistente.getNombreClan();
                                 sinClan.expulsarVampiro(vampiroExistente);
                             }
                             break;
@@ -294,7 +293,6 @@ public class Main {
                                 break;
                             }
                             clanExistente2.expulsarVampiro(vampiroExistente2);
-                            vampiroExistente2.Clan = "Sin clan";
                             sinClan.admitirVampiro(vampiroExistente2);
                             break;
 
@@ -522,7 +520,6 @@ public class Main {
                                 List<Vampiro> vampirosAExpulsar = clanAEliminar.getVampiros();
                                 for (Vampiro vampiro : vampirosAExpulsar) {
                                     sinClan.admitirVampiro(vampiro);
-                                    vampiro.Clan= "Sin clan";
                                 }
                                 clanes.remove(clanAEliminar);
                                 System.out.println("El clan '" + clanAEliminar + "' ha sido eliminado");
