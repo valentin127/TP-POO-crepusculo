@@ -447,7 +447,7 @@ public class Main {
 
                         case 9:
                             // Crear un nuevo clan
-                            System.out.println("Ingrese el nombre del nuevo clan comun:");
+                            System.out.println("Ingrese el nombre del nuevo clan comun (Ten en cuenta que debes agregarle vampiros si quieres guardarlo):");
                             String nombreClanNuevo = sc.nextLine();
                             
                             // Verifica si el clan ya existe
