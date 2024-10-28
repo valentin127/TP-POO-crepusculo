@@ -387,7 +387,7 @@ public class Main {
                                 }
                             }
                             if (vampiroMasApto != null) {
-                                System.out.println("El vampiro más apto es: " + vampiroMasApto.nombre + " con fuerza " + vampiroMasApto.fuerza + " y velocidad " + vampiroMasApto.velocidad +  " , posee un hambre de: "+ vampiroMasApto.hambre);
+                                System.out.println("El vampiro más apto es " + vampiroMasApto.nombre + ", con fuerza " + vampiroMasApto.fuerza + " y velocidad " + vampiroMasApto.velocidad +  ". Posee un hambre de "+ vampiroMasApto.hambre);
                             } else {
                                 System.out.println("No hay vampiros en la lista.");
                             }
@@ -491,7 +491,7 @@ public class Main {
                             // Si el clan no existe y la antigüedad es válida, añade un nuevo clan
                             ClanComun nuevoClan = new ClanComun(nombreClanNuevo, años);
                             clanes.add(nuevoClan);
-                            System.out.println("Clan " + nombreClanNuevo + " creado exitosamente.");
+                            System.out.println("Clan '" + nombreClanNuevo + "'' creado exitosamente.");
                             break;
                         
                         case 10:
@@ -557,6 +557,7 @@ public class Main {
                             sc.close();
                             ciclo = false;
                             break;
+
                         default:
                             System.out.println("Opción inválida. Por favor, elija un número de la lista.");
                     }
