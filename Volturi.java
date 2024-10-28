@@ -5,15 +5,16 @@ public class Volturi extends Clan{
         this.influenciaPolitica = influenciaPolitica;
     }
     @Override
-    public void expulsarVampiro(Vampiro vampiro) {
+    public void expulsarVampiro(Vampiro vampiro, Clan sinClan) {
         if (influenciaPolitica < 80) {
             if (vampiros.remove(vampiro)) {
                 System.out.println(vampiro.getNombre() + " ha sido expulsado del clan " + nombreClan + ".");
+                sinClan.admitirVampiro(vampiro);
             } else {
                 System.out.println(vampiro.getNombre() + " no pertenece al clan " + nombreClan + ".");
             }
         } else {
-            System.out.println("No se puede expulsar vampiros de" + nombreClan + "por su gran influencia politica");
+            System.out.println("No se puede expulsar vampiros de " + nombreClan + " por su gran influencia politica ("+influenciaPolitica+")\n(Debe ser menor que 80 puntos)");
         }
     }
     @Override

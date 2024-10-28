@@ -251,7 +251,7 @@ public class Main {
                                 System.out.println("El vampiro indicado ya se encuentra en un clan");
                             } else {
                                 clanExistente.admitirVampiro(vampiroExistente);
-                                sinClan.expulsarVampiro(vampiroExistente);
+                                sinClan.expulsarVampiro(vampiroExistente, sinClan);
                             }
                             break;
 
@@ -292,8 +292,7 @@ public class Main {
                                 System.out.println("El vampiro indicado no existe");
                                 break;
                             }
-                            clanExistente2.expulsarVampiro(vampiroExistente2);
-                            sinClan.admitirVampiro(vampiroExistente2);
+                            clanExistente2.expulsarVampiro(vampiroExistente2, sinClan);
                             break;
 
                         case 6:

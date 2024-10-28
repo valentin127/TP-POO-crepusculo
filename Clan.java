@@ -17,10 +17,11 @@ public abstract class Clan {
             System.out.println(vampiro.getNombre() + " ha sido admitido en el clan " + nombreClan + ".");
         }
     }
-    public void expulsarVampiro(Vampiro vampiro) {
+    public void expulsarVampiro(Vampiro vampiro, Clan sinClan) {
         if (vampiros.remove(vampiro)) {
             if (!nombreClan.equals("Sin clan")) {
                 System.out.println(vampiro.getNombre() + " ha sido expulsado del clan " + nombreClan + ".");
+                sinClan.admitirVampiro(vampiro);
             }
         } else {
             System.out.println(vampiro.getNombre() + " no pertenece al clan " + nombreClan + ".");
