@@ -525,7 +525,6 @@ public class Main {
                             break;
 
                         case 11:
-                            System.out.println("Guardando los vampiros y saliendo del programa...");  
                             try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV))) {
                                 bw.write("Nombre,Fuerza,Velocidad,Hambre,ColorOjos,Clan,TieneAlas,Antiguedad del clan \n");
                                 for (Vampiro vamp : vampiros) {
@@ -565,12 +564,16 @@ public class Main {
                     System.out.println("Se produjo un error inesperado: " + e.getClass().getName() + " - " + e.getMessage());
                     sc.nextLine();
                 }
+                
             }
         sc.close();
         } catch (IOException e) {
             System.out.println("Error al leer el archivo CSV: " + e.getMessage());
         } catch (Exception e) {
         System.out.println("Se produjo un error inesperado: " + e.getMessage());
+        }
+        finally{
+            System.out.println("Guardando los vampiros y saliendo del programa...");  
         }
     }
 }
