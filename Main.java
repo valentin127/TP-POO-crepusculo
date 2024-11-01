@@ -488,7 +488,7 @@ public class Main {
                             // Si el clan no existe y la antigüedad es válida, añade un nuevo clan
                             ClanComun nuevoClan = new ClanComun(nombreClanNuevo, años);
                             clanes.add(nuevoClan);
-                            System.out.println("Clan '" + nombreClanNuevo + "'' creado exitosamente.");
+                            System.out.println("Clan '" + nombreClanNuevo + "' creado exitosamente.");
                             break;
                         
                         case 10:
