@@ -566,14 +566,14 @@ public class Main {
                 }
                 
             }
+            sc.close();
         } catch (IOException e) {
             System.out.println("Error al leer el archivo CSV: " + e.getMessage());
         } catch (Exception e) {
         System.out.println("Se produjo un error inesperado: " + e.getMessage());
         }
         finally{
-            System.out.println("Guardando los vampiros y saliendo del programa...");  
-            sc.close();
+            System.out.println("Guardando los vampiros y saliendo del programa...");
         }
     }
 }
