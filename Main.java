@@ -566,7 +566,6 @@ public class Main {
                 }
                 
             }
-        sc.close();
         } catch (IOException e) {
             System.out.println("Error al leer el archivo CSV: " + e.getMessage());
         } catch (Exception e) {
@@ -574,6 +573,7 @@ public class Main {
         }
         finally{
             System.out.println("Guardando los vampiros y saliendo del programa...");  
+            sc.close();
         }
     }
 }
