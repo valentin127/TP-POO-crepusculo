@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
-public abstract class Clan {
-    protected  String nombreClan;
+public class Clan {
+    protected String nombreClan;
     protected List<Vampiro> vampiros;
-    public Clan(String nombreClan) {
+    protected final int antiguedadDelClan;
+    public Clan(String nombreClan, int adc) {
         this.nombreClan = nombreClan;
         this.vampiros = new ArrayList<>();
+        this.antiguedadDelClan=adc;
     }
     public void IniciarClanes(Vampiro vampiro){
         vampiros.add(vampiro);
@@ -43,6 +45,9 @@ public abstract class Clan {
     }
     public List<Vampiro> getVampiros() {
         return vampiros;
+    }
+    public int getAntiguedadDelClan(){
+        return antiguedadDelClan;
     }
     @Override
     public String toString(){

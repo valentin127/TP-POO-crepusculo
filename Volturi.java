@@ -1,7 +1,7 @@
 public class Volturi extends Clan{
     private int influenciaPolitica;
     public Volturi(String nombreClan, int influenciaPolitica) {
-        super(nombreClan);
+        super(nombreClan, 3000);
         this.influenciaPolitica = influenciaPolitica;
     }
     @Override

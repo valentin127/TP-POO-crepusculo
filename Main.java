@@ -14,9 +14,9 @@ public class Main {
         ArrayList<Clan> clanes = new ArrayList<>(); 
         ArrayList<Vampiro> vampiros = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
-            Clan sinClan = new ClanComun("Sin clan", 0);
+            Clan sinClan = new Clan("Sin clan", 0);
             clanes.add(sinClan);
-            Clan volturi = new Volturi("Volturi", 100);
+            Clan volturi = new Volturi("Volturi", 3000);
             clanes.add(volturi);
             String linea;
             boolean primeraLinea = true;
@@ -49,7 +49,7 @@ public class Main {
                         clanExistente.IniciarClanes(vampiro);
                     } else {
                         // Si el clan no existe, añade un nuevo clan y admite al vampiro
-                        ClanComun nuevoClan = new ClanComun(clanNombre, años);
+                        Clan nuevoClan = new Clan(clanNombre, años);
                         clanes.add(nuevoClan);
                         nuevoClan.IniciarClanes(vampiro); 
                     }
@@ -490,7 +490,7 @@ public class Main {
                             }
                             
                             // Si el clan no existe y la antigüedad es válida, añade un nuevo clan
-                            ClanComun nuevoClan = new ClanComun(nombreClanNuevo, años);
+                            Clan nuevoClan = new Clan(nombreClanNuevo, años);
                             clanes.add(nuevoClan);
                             System.out.println("Clan '" + nombreClanNuevo + "' creado exitosamente.");
                             break;
@@ -519,12 +519,12 @@ public class Main {
                             if (clanAEliminar != null) {
                                 List<Vampiro> vampirosAExpulsar = clanAEliminar.getVampiros();
                                 for (Vampiro vampiro : vampirosAExpulsar) {
-                                    sinClan.admitirVampiro(vampiro); // O de la misma forma se podria expulsar de clanAEliminar ya que eso tambien los agrega a sinClan
+                                    sinClan.admitirVampiro(vampiro);
                                 }
                                 clanes.remove(clanAEliminar);
                                 System.out.println("El clan '" + clanAEliminar + "' ha sido eliminado");
                             } else {
-                                System.out.println("No se encontró un clan con el nombre '" + clanAEliminar + "'.");
+                                System.out.println("No se encontró un clan con el nombre '" + nombreClanAEliminar + "'.");
                             }
                             break;
 
@@ -542,15 +542,14 @@ public class Main {
                                             );
                                             for (Clan clan : clanes) {
                                                 if (clan.getNombreClan().equalsIgnoreCase(vamp.Clan)) {
-                                                    if (clan instanceof ClanComun) {
-                                                        ClanComun clanComun = (ClanComun) clan;
-                                                        bw.write(clanComun.getAntiguedadDelClan() + "\n");
-                                                    } else if (clan instanceof Volturi) {
+                                                    if (clan instanceof Volturi) {
                                                         bw.write("3000\n");
+                                                    } else {
+                                                        bw.write(clan.getAntiguedadDelClan() + "\n");
                                                     }
                                                 }
                                             }
-                                            }
+                                }
                             } catch (IOException e) {
                                 System.out.println("Error al guardar los vampiros en el archivo CSV: " + e.getMessage());
                             }
