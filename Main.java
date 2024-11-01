@@ -100,8 +100,10 @@ public class Main {
                                         break;
                                     }
                                 }
-                            
-                                if (vampiroExiste) {
+                                
+                                if(nombre.trim().isEmpty()){
+                                    System.out.println("Entrada inválida.");
+                                } else if (vampiroExiste) {
                                     System.out.println("Ya existe un vampiro con el nombre " + nombre + ". Por favor, ingrese un nombre diferente.");
                                 } else {
                                     break;
@@ -444,34 +446,36 @@ public class Main {
 
                         case 9:
                             // Crear un nuevo clan
-                            System.out.println("Ingrese el nombre del nuevo clan comun (Ten en cuenta que debes agregarle vampiros si quieres guardarlo):");
-                            String nombreClanNuevo = sc.nextLine();
-                            
-                            // Verifica si el clan ya existe
-                            boolean existeClan = false;
-                            for (Clan existente : clanes) {
-                                if (existente.getNombreClan().equalsIgnoreCase(nombreClanNuevo)) {  // Comparar nombres de clanes (ignorar mayúsculas)
-                                    existeClan = true;
+                            String nombreClanNuevo;
+                            while(true){
+                                System.out.println("Ingrese el nombre del nuevo clan comun (Ten en cuenta que debes agregarle vampiros si quieres guardarlo):");
+                                nombreClanNuevo = sc.nextLine();
+                                
+                                // Verifica si el clan ya existe
+                                boolean existeClan = false;
+                                for (Clan existente : clanes) {
+                                    if (existente.getNombreClan().equalsIgnoreCase(nombreClanNuevo)) {  // Comparar nombres de clanes (ignorar mayúsculas)
+                                        existeClan = true;
+                                        break;
+                                    }
+                                }
+                                
+                                // Si el clan ya existe, no se puede crear
+                                if (existeClan) {
+                                    System.out.println("Ya existe un clan con ese nombre");
+                                } else if(nombreClanNuevo.trim().isEmpty()){
+                                    System.out.println("Entrada inválida.");
+                                } else {
                                     break;
                                 }
-                            }
                             
-                            // Si el clan ya existe, no se puede crear
-                            if (existeClan) {
-                                System.out.println("Ya existe un clan con ese nombre");
-                                break;
                             }
-                            
+
                             // Ingreso de años de antigüedad con validación y opción de reintento
                             int años = -1;
                             while (true) {
                                 System.out.println("Ingrese los años de antiguedad de ese clan:");
                                 String input = sc.nextLine();
-                            
-                                if (input.equalsIgnoreCase("cancelar")) {
-                                    System.out.println("Operación cancelada.");
-                                    break;
-                                }
                             
                                 try {
                                     años = Integer.parseInt(input);
