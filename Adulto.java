@@ -45,7 +45,7 @@ public class Adulto extends Vampiro implements ComedorDeAnimales {
         if (hambre > 1) {
             int hambreAnterior = hambre;
             Animal animal = new Animal();
-            hambre = hambre - animal.getHambre();
+            hambre = hambre - animal.getValorNutritivo();
             condicion = 80;
             if (hambre < 1) {
                 hambre = 1;

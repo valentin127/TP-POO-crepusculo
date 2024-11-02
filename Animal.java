@@ -1,14 +1,14 @@
 import java.util.Random;
 
 public class Animal {
-    private int hambre; 
+    private int valorNutritivo; 
     public Animal() {
-        this.hambre = generarHambreAleatorio(); 
+        this.valorNutritivo = generarValorNutritivo(); 
     }
-    public int getHambre() {
-        return hambre;
+    public int getValorNutritivo() {
+        return valorNutritivo;
     }
-    private int generarHambreAleatorio() {
+    private int generarValorNutritivo() {
         Random random = new Random();
         return random.nextInt(99) + 1; 
     }
