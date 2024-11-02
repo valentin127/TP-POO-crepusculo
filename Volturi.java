@@ -1,12 +1,14 @@
 public class Volturi extends Clan{
-    private int influenciaPolitica;
+    private final int influenciaPolitica;
     public Volturi(String nombreClan, int influenciaPolitica) {
         super(nombreClan, 3000);
         this.influenciaPolitica = influenciaPolitica;
     }
     @Override
     public void expulsarVampiro(Vampiro vampiro, Clan sinClan) {
-        if (influenciaPolitica < 80) {
+        if(vampiros.size() == 1 && !nombreClan.equalsIgnoreCase("Sin Clan")){
+            System.out.println("No se puede eliminar al ultimo miembro de " + nombreClan + ".");
+        } else if (influenciaPolitica < 80) {
             if (vampiros.remove(vampiro)) {
                 System.out.println(vampiro.getNombre() + " ha sido expulsado del clan " + nombreClan + ".");
                 sinClan.admitirVampiro(vampiro);
@@ -29,5 +31,9 @@ public class Volturi extends Clan{
     }
     public void mostrarInfluenciaPolitica() {
         System.out.println("Influencia política de los Volturi: " + influenciaPolitica);
+    }
+    @Override
+    public String toString(){
+        return nombreClan + " | Antigüedad: " + antiguedadDelClan + " años" + " | Influencia política: " + influenciaPolitica;
     }
 }

@@ -16,7 +16,7 @@ public class Main {
         try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
             Clan sinClan = new Clan("Sin clan", 0);
             clanes.add(sinClan);
-            Clan volturi = new Volturi("Volturi", 3000);
+            Clan volturi = new Volturi("Volturi", 60);
             clanes.add(volturi);
             String linea;
             boolean primeraLinea = true;
@@ -254,6 +254,7 @@ public class Main {
                                 System.out.println("El vampiro indicado ya se encuentra en un clan");
                             } else {
                                 clanExistente.admitirVampiro(vampiroExistente);
+                                sinClan.expulsarVampiro(vampiroExistente, sinClan);
                             }
                             break;
 
@@ -503,10 +504,7 @@ public class Main {
                                 System.out.println("No se puede eliminar \"Sin clan\"");
                                 break;
                             }
-                            if (nombreClanAEliminar.equalsIgnoreCase("Volturi")) {
-                                System.out.println("No se puede eliminar \"Volturi\"");
-                                break;
-                            }
+                            
                             Clan clanAEliminar = null;
                             // Buscar el clan que se desea eliminar
                             for (Clan clan : clanes) {
@@ -517,6 +515,10 @@ public class Main {
                             }
 
                             if (clanAEliminar != null) {
+                                if (clanAEliminar instanceof Volturi) {
+                                    System.out.println("No se puede eliminar \"Volturi\"");
+                                    break;
+                                }
                                 List<Vampiro> vampirosAExpulsar = clanAEliminar.getVampiros();
                                 for (Vampiro vampiro : vampirosAExpulsar) {
                                     sinClan.admitirVampiro(vampiro);

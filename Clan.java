@@ -20,7 +20,9 @@ public class Clan {
         }
     }
     public void expulsarVampiro(Vampiro vampiro, Clan sinClan) {
-        if (vampiros.remove(vampiro)) {
+        if(vampiros.size() == 1 && !nombreClan.equalsIgnoreCase("Sin Clan")){
+            System.out.println("No se puede eliminar al ultimo miembro de " + nombreClan + ".");
+        } else if (vampiros.remove(vampiro)) {
             if (!nombreClan.equals("Sin clan")) {
                 System.out.println(vampiro.getNombre() + " ha sido expulsado del clan " + nombreClan + ".");
                 sinClan.admitirVampiro(vampiro);
@@ -51,6 +53,9 @@ public class Clan {
     }
     @Override
     public String toString(){
-        return nombreClan;
+        if(nombreClan.equalsIgnoreCase("Sin Clan")){
+            return nombreClan;
+        }
+        return nombreClan + " | Antigüedad: " + antiguedadDelClan + " años";
     }
 }
