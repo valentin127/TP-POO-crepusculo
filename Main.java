@@ -39,16 +39,14 @@ public class Main {
                     vampiros.add(vampiro); 
                     Clan clanExistente = null;
                     for (Clan existente : clanes) {
-                        if (existente.getNombreClan().equalsIgnoreCase(clanNombre)) {  // Comparar nombres de clanes (ignorar mayúsculas)
+                        if (existente.getNombreClan().equalsIgnoreCase(clanNombre)) {
                             clanExistente = existente;
                             break;
                         }
                     }
-                    // Si el clan existe, admite al vampiro en el clan existente
                     if (clanExistente != null) {
                         clanExistente.IniciarClanes(vampiro);
                     } else {
-                        // Si el clan no existe, añade un nuevo clan y admite al vampiro
                         Clan nuevoClan = new Clan(clanNombre, años);
                         clanes.add(nuevoClan);
                         nuevoClan.IniciarClanes(vampiro); 
@@ -56,7 +54,6 @@ public class Main {
                 }
             }
 
-            // Menú interactivo
             Scanner sc = new Scanner(System.in);
             boolean ciclo = true;
 
@@ -67,7 +64,6 @@ public class Main {
                     sc.nextLine();  
                     switch (opcion) {
                         case 1:
-                            // Mostrar clanes
                             System.out.println("\nClanes:");
                             for (Clan clan : clanes) {
                                 System.out.println("- " + clan);
@@ -92,10 +88,9 @@ public class Main {
                                     break;
                                 }
                             
-                                // Verificar si el vampiro ya existe
                                 boolean vampiroExiste = false;
                                 for (Vampiro vampiro : vampiros) {
-                                    if (vampiro.getNombre().equalsIgnoreCase(nombre)) { // Comparar ignorando mayúsculas
+                                    if (vampiro.getNombre().equalsIgnoreCase(nombre)) {
                                         vampiroExiste = true;
                                         break;
                                     }
@@ -125,7 +120,7 @@ public class Main {
                                     fuerza = Integer.parseInt(input);
                                     if (fuerza < 1 || fuerza > 100) {
                                         System.out.println("La fuerza debe estar entre 1 y 100. Inténtalo de nuevo.");
-                                        continue; // Salta el break y vuelve a preguntar
+                                        continue;
                                     }
                                     break;
                                 } catch (NumberFormatException e) {
@@ -148,7 +143,7 @@ public class Main {
                                     velocidad = Integer.parseInt(input);
                                     if (velocidad < 1 || velocidad > 100) {
                                         System.out.println("La velocidad debe estar entre 1 y 100. Inténtalo de nuevo.");
-                                        continue; // Salta el break y vuelve a preguntar
+                                        continue;
                                     }
                                     break;
                                 } catch (NumberFormatException e) {
@@ -171,7 +166,7 @@ public class Main {
                                     hambre = Integer.parseInt(input);
                                     if (hambre < 1 || hambre > 100) {
                                         System.out.println("El hambre debe estar entre 1 y 100. Inténtalo de nuevo.");
-                                        continue; // Salta el break y vuelve a preguntar
+                                        continue;
                                     }
                                     break;
                                 } catch (NumberFormatException e) {
@@ -209,7 +204,6 @@ public class Main {
                             break;
 
                         case 3:
-                            // Listar vampiros
                             for(Clan clan:clanes){
                                 clan.listarVampiros();
                             }
@@ -217,7 +211,6 @@ public class Main {
 
                         case 4:
                             System.out.println("Opcion 4 - Admitir vampiro a un clan");
-                            // Código para admitir vampiro a clan
                             System.out.println("Ingrese el nombre del clan: ");
                             String nombreClan = sc.nextLine();
 
@@ -260,8 +253,6 @@ public class Main {
 
                         case 5:
                             System.out.println("Opción 5 - Expulsar vampiro de un clan\n");
-                            // Código para expulsar vampiro de su clan
-                            // Usamos un 2 en las variables porque java da un error raro con la variable definida en otro case
                             System.out.println("Ingrese el nombre del clan: ");
                             String nombreClan2 = sc.nextLine();
 
@@ -323,7 +314,6 @@ public class Main {
                             
                             int vampiroSeleccionado = -1;
                             while (true) {
-                                // Mostrar la lista de vampiros
                                 for (int i = 0; i < vampiros.size(); i++) {
                                     Vampiro vamp = vampiros.get(i);
                                     System.out.println((i + 1) + ". Vampiro: " + vamp.getNombre() + " (Hambre actual: " + vamp.getHambre() + ")");
@@ -341,7 +331,7 @@ public class Main {
                                     vampiroSeleccionado = Integer.parseInt(input) - 1;
                             
                                     if (vampiroSeleccionado >= 0 && vampiroSeleccionado < vampiros.size()) {
-                                        break; // Salir del ciclo si la selección es válida
+                                        break;
                                     } else {
                                         System.out.println("Selección inválida. Por favor, elija un número de la lista.");
                                     }
@@ -352,7 +342,6 @@ public class Main {
 
                             if(continuarComer == false) break;
                             
-                            // Proceso después de seleccionar un vampiro
                             Vampiro vampiroQueCome = vampiros.get(vampiroSeleccionado);
                             if (vampiroQueCome instanceof RecienConvertido) {
                                 System.out.println(vampiroQueCome.getNombre() + " es un vampiro tipo RecienConvertido y solo puede comer personas.");
@@ -361,7 +350,6 @@ public class Main {
                             else if (vampiroQueCome instanceof Maduro) {
                                 System.out.println(vampiroQueCome.getNombre() + " es un vampiro tipo Maduro, puede comer tanto animales como personas.");
                             
-                                // Verificar si puede comer animales usando la interfaz
                                 if (vampiroQueCome instanceof ComedorDeAnimales) {
                                     ComedorDeAnimales vampiroMaduro = (ComedorDeAnimales) vampiroQueCome;
                                     System.out.println("¿El vampiro desea comer un animal? (si/no):");
@@ -377,7 +365,6 @@ public class Main {
                             else if (vampiroQueCome instanceof Adulto) {
                                 System.out.println(vampiroQueCome.getNombre() + " es un vampiro tipo Adulto, puede comer lo que desee.");
                             
-                                // Verificar si puede comer animales usando la interfaz
                                 if (vampiroQueCome instanceof ComedorDeAnimales) {
                                     ComedorDeAnimales vampiroAdulto = (ComedorDeAnimales) vampiroQueCome;
                                     System.out.println("¿El vampiro desea comer un animal? (si/no):");
@@ -399,10 +386,10 @@ public class Main {
                             Vampiro vampiroMasApto = null;
                             int mayorAptitud = 0; 
                             for (Vampiro vamp : vampiros) {
-                                int aptitudActual = vamp.fuerza + vamp.velocidad - vamp.hambre;  // Calcular la suma de fuerza y velocidad
+                                int aptitudActual = vamp.fuerza + vamp.velocidad - vamp.hambre;
                                 if (aptitudActual > mayorAptitud) {
-                                    mayorAptitud = aptitudActual;  // Actualizar la mayor aptitud
-                                    vampiroMasApto = vamp;  // Guardar al vampiro más apto hasta ahora
+                                    mayorAptitud = aptitudActual;
+                                    vampiroMasApto = vamp;
                                 }
                             }
                             if (vampiroMasApto != null) {
@@ -418,7 +405,6 @@ public class Main {
                         
                             int vampiroSeleccionado1 = -1;
                             while (true) {
-                                // Mostrar la lista de vampiros
                                 for (int i = 0; i < vampiros.size(); i++) {
                                     Vampiro vamp = vampiros.get(i);
                                     System.out.println((i + 1) + ". Vampiro: " + vamp.getNombre() + " (Hambre actual: " + vamp.getHambre() + ")");
@@ -436,7 +422,7 @@ public class Main {
                                     vampiroSeleccionado1 = Integer.parseInt(input) - 1;
                             
                                     if (vampiroSeleccionado1 >= 0 && vampiroSeleccionado1 < vampiros.size()) {
-                                        break; // Salir del ciclo si la selección es válida
+                                        break;
                                     } else {
                                         System.out.println("Selección inválida. Por favor, elija un número de la lista.");
                                     }
@@ -447,7 +433,6 @@ public class Main {
                         
                             if (continuarHabilidad == false) break;
                         
-                            // Proceso después de seleccionar un vampiro
                             Vampiro vampiroQueaactiva = vampiros.get(vampiroSeleccionado1);
                             if (vampiroQueaactiva instanceof RecienConvertido) {
                                 System.out.println(vampiroQueaactiva.getNombre() + " es un vampiro tipo RecienConvertido y va a usar su habilidad.");
@@ -465,22 +450,19 @@ public class Main {
                         
 
                         case 9:
-                            // Crear un nuevo clan
                             String nombreClanNuevo;
                             while(true){
                                 System.out.println("Ingrese el nombre del nuevo clan comun (Ten en cuenta que debes agregarle vampiros si quieres guardarlo):");
                                 nombreClanNuevo = sc.nextLine();
                                 
-                                // Verifica si el clan ya existe
                                 boolean existeClan = false;
                                 for (Clan existente : clanes) {
-                                    if (existente.getNombreClan().equalsIgnoreCase(nombreClanNuevo)) {  // Comparar nombres de clanes (ignorar mayúsculas)
+                                    if (existente.getNombreClan().equalsIgnoreCase(nombreClanNuevo)) {
                                         existeClan = true;
                                         break;
                                     }
                                 }
                                 
-                                // Si el clan ya existe, no se puede crear
                                 if (existeClan) {
                                     System.out.println("Ya existe un clan con ese nombre");
                                 } else if(nombreClanNuevo.trim().isEmpty()){
@@ -491,7 +473,6 @@ public class Main {
                             
                             }
 
-                            // Ingreso de años de antigüedad con validación y opción de reintento
                             int años = -1;
                             while (true) {
                                 System.out.println("Ingrese los años de antiguedad de ese clan:");
@@ -500,7 +481,7 @@ public class Main {
                                 try {
                                     años = Integer.parseInt(input);
                                     if (años >= 0) {
-                                        break; // Si la entrada es válida, sale del ciclo
+                                        break;
                                     } else {
                                         System.out.println("Los años de antiguedad no pueden ser negativos.");
                                     }
@@ -509,14 +490,12 @@ public class Main {
                                 }
                             }
                             
-                            // Si el clan no existe y la antigüedad es válida, añade un nuevo clan
                             Clan nuevoClan = new Clan(nombreClanNuevo, años);
                             clanes.add(nuevoClan);
                             System.out.println("Clan '" + nombreClanNuevo + "' creado exitosamente.");
                             break;
                         
                         case 10:
-                            // Eliminar un clan existente
                             System.out.println("Ingrese el nombre del clan a eliminar:");
                             String nombreClanAEliminar = sc.nextLine();
                             if (nombreClanAEliminar.equalsIgnoreCase("Sin clan")) {
@@ -525,7 +504,6 @@ public class Main {
                             }
                             
                             Clan clanAEliminar = null;
-                            // Buscar el clan que se desea eliminar
                             for (Clan clan : clanes) {
                                 if (clan.getNombreClan().equalsIgnoreCase(nombreClanAEliminar)) {
                                     clanAEliminar = clan;

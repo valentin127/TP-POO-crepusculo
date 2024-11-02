@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Animal {
-    private int valorNutritivo; 
+    private final int valorNutritivo; 
     public Animal() {
         this.valorNutritivo = generarValorNutritivo(); 
     }
