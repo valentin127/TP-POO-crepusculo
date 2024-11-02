@@ -38,5 +38,3 @@ e) Obtener Vampiro más apto: muestra en pantalla la información del vampiro
 que más fuerza y velocidad tiene, pero con menor hambre.
 Recuerde que este es un esquema. Es válido sumar más atributos, métodos o clases,
 siempre y cuando tengan una razón de ser.
-
-Añadir funcion crear clanes. Y poder borrar clanes.

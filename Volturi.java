@@ -1,5 +1,5 @@
 public class Volturi extends Clan{
-    private final int influenciaPolitica;
+    private int influenciaPolitica;
     public Volturi(String nombreClan, int influenciaPolitica) {
         super(nombreClan, 3000);
         this.influenciaPolitica = influenciaPolitica;
@@ -28,6 +28,9 @@ public class Volturi extends Clan{
         } else {
             System.out.println("Para ser admitido a los Volturi, " + vampiro.getNombre() + " debería tener al menos 30 de fuerza y 30 de velocidad");
         }
+    }
+    public void setInfluenciaPolitica(int inf){
+        influenciaPolitica = inf;
     }
     public void mostrarInfluenciaPolitica() {
         System.out.println("Influencia política de los Volturi: " + influenciaPolitica);

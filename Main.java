@@ -280,6 +280,25 @@ public class Main {
                                 System.out.println("No se puede expulsar si no tiene clan");
                                 break;
                             }
+                            if (clanExistente2 instanceof Volturi) {
+                                while(true){
+                                    System.out.println("Ingrese la influencia política del clan Volturi: (entre 1 y 100)");
+                                    try {
+                                        int influenciaPolitica = sc.nextInt();
+                                        sc.nextLine();
+                                        if (influenciaPolitica < 1 || influenciaPolitica > 100) {
+                                            System.out.println("La influencia política debe estar entre 1 y 100.");
+                                            continue;
+                                        }
+                                        Volturi volturiClan = (Volturi) clanExistente2;
+                                        volturiClan.setInfluenciaPolitica(influenciaPolitica);
+                                        break;
+                                    } catch (Exception e) {
+                                        System.out.println("Entrada inválida. Debe ser un número entero entre 1 y 100.");
+                                        sc.next();
+                                    }
+                                }
+                            }
                         
                             System.out.println("Ingrese el nombre del vampiro: ");
                             String nombreVampiro2 = sc.nextLine();
